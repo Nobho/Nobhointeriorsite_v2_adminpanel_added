@@ -1,0 +1,48 @@
+// src/assets/scss/components/_buttons.scss
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: $border-radius;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color $transition-speed, color $transition-speed, border-color $transition-speed;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// Primary CTA (Light Mode)
+.button--primary {
+  background-color: $teal;
+  color: $navy;
+
+  &:hover {
+    background-color: $teal-hover;
+    color: $navy;
+  }
+  
+  &:active {
+    background-color: $teal-active;
+  }
+
+  &:disabled {
+    background-color: $disabled;
+    cursor: not-allowed;
+  }
+}
+
+// Secondary CTA (Light Mode)
+.button--secondary {
+  background-color: $navy;
+  color: $white;
+
+  &:hover {
+    background-color: $navy-hover;
+    color: $white;
+  }
+}

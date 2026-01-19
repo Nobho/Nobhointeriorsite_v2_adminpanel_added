@@ -1,0 +1,38 @@
+// src/assets/scss/components/_legal-page.scss
+
+.legal-page .page-header {
+  // Use a simpler header for legal pages
+  text-align: left;
+  padding: 3rem 0;
+  border-bottom: none;
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+.legal-content {
+  padding-bottom: 5rem;
+  
+  // These styles will apply to the HTML rendered from the JSON file.
+  h2 {
+    font-size: 1.75rem;
+    margin: 2.5rem 0 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+  
+  p {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  ul {
+    padding-left: 20px;
+    margin-bottom: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.75rem;
+  }
+}

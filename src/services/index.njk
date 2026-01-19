@@ -1,0 +1,43 @@
+---
+layout: "base-layout.njk"
+title: "Our Services: Crafting Your Ideal Space"
+description: "We offer a comprehensive range of interior design services, from residential and commercial design to space planning and project management, meticulously crafted to bring your vision to life."
+---
+
+<header class="page-header">
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p class="page-intro">We offer a comprehensive range of interior design services, meticulously crafted to meet your unique needs and bring your design aspirations to fruition.</p>
+    </div>
+</header>
+
+<section class="services-main">
+    <div class="container">
+        <div class="service-grid">
+            {% for service in services_dummy %}
+            <div class="service-card">
+                {% if service.image %}
+                <div class="service-card__image-wrapper">
+                    <img src="{{ service.image }}" alt="{{ service.title }}" class="service-card__image" loading="lazy">
+                </div>
+                {% endif %}
+                <div class="service-card__content">
+                    <h2 class="service-card__title">{{ service.title }}</h2>
+                    <p class="service-card__description">{{ service.intro }}</p>
+                    <div class="service-card__meta">
+                        <div class="meta-item">
+                            <span class="meta-item__label">Investment</span>
+                            <span class="meta-item__value">{{ service.investment.split('.')[0] }}</span>
+                        </div>
+                    </div>
+                    <a href="/services/{{ service.slug }}/" class="button button--secondary service-card__cta">Learn More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="faq-prompt">
+            <p>Have questions about timelines, budgets, or our process? <a href="/about#faq">Visit our FAQ page for answers</a>.</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,242 @@
+// src/assets/scss/components/_pricing-page.scss
+
+.pricing-section {
+  padding: 4rem 0;
+  background-color: var(--color-bg);
+}
+
+// 1. TABS (Top Bar)
+.pricing-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.pricing-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 1.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+
+  &:hover { color: $teal; }
+
+  &.active {
+    color: var(--color-text-heading); // Brighter in dark mode
+    border-bottom-color: $teal;
+    background-color: rgba($teal, 0.05);
+  }
+}
+
+.tab-badge {
+  display: inline-block;
+  background-color: $teal;
+  color: $navy;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+// 2. PANELS
+.pricing-content-wrapper {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $soft-shadow;
+  min-height: 400px;
+}
+
+.pricing-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+  &.active { display: block; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.panel-header {
+  padding: 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  // FIX: Removed hardcoded background that looked bad in dark mode
+  // Now it uses the card background, which is correct for both modes.
+  
+  h2 {
+    font-size: 2rem;
+    color: var(--color-text-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    // FIX: Use body color instead of muted for better contrast in dark mode
+    color: var(--color-text-body); 
+    opacity: 0.9;
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+  }
+}
+
+.panel-price {
+  .currency-value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: $teal-accessible;
+    line-height: 1;
+    
+    &::before {
+      content: '৳';
+      font-size: 1.75rem;
+      vertical-align: super;
+      margin-right: 4px;
+    }
+  }
+  
+  // FIX: Stronger selector to ensure $ symbol overrides ৳
+  &.usd-mode .currency-value::before {
+    content: '$';
+  }
+
+  .currency-unit {
+    display: block;
+    font-size: 1rem;
+    // FIX: Better contrast
+    color: var(--color-text-body);
+    opacity: 0.8;
+    margin-top: 0.25rem;
+  }
+}
+
+.panel-body {
+  padding: 2.5rem;
+  
+  h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 2.5rem;
+  max-width: 500px;
+
+  li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    
+    &.included::before {
+      content: '✓';
+      color: $teal;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      width: 20px;
+    }
+
+    &.excluded {
+      color: var(--color-text-muted);
+      opacity: 0.5;
+      &::before {
+        content: '✕';
+        color: var(--color-text-muted);
+        margin-right: 1rem;
+        width: 20px;
+      }
+    }
+  }
+}
+
+// 3. BUTTONS (New Group Layout)
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+
+  // Stack on very small screens
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+
+  .button {
+    flex: 1; // Make buttons equal width
+    text-align: center;
+  }
+}
+
+// New Outline Button Style
+.button--outline {
+  background-color: transparent;
+  border: 2px solid var(--color-text-heading);
+  color: var(--color-text-heading);
+  font-weight: bold;
+  
+  &:hover {
+    background-color: var(--color-text-heading);
+    color: var(--color-bg-card); // Invert colors on hover
+    text-decoration: none;
+  }
+}
+
+// 4. FOOTER CONTROLS
+.pricing-footer-controls {
+  margin-top: 3rem;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+
+.currency-selector-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  label {
+    font-weight: 600;
+    color: var(--color-text-body);
+  }
+}
+
+.currency-dropdown {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-bg-card);
+  color: var(--color-text-body);
+  font-size: 1rem;
+  cursor: pointer;
+  
+  &:focus {
+    border-color: $teal;
+    outline: none;
+  }
+}
+
+.pricing-note {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}

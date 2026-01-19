@@ -1,0 +1,99 @@
+// src/assets/scss/components/_project-detail-page.scss
+
+.project-header {
+  text-align: center;
+  padding: 4rem 0 2rem;
+}
+
+.project-title {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-meta {
+  color: var(--color-text-muted);
+  font-size: $font-size-base;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  span { margin: 0 0.5rem; }
+}
+
+.project-hero-image {
+  margin: 0;
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// For sections with text-heavy content
+.container--narrow {
+  max-width: 800px;
+}
+
+.project-narrative {
+  padding: 5rem 0;
+  background-color: var(--color-bg-card);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.narrative-grid {
+  display: grid;
+  gap: 2.5rem;
+  h2 { font-size: 1.25rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  p { font-family: $font-family-serif; font-size: 1.25rem; }
+}
+
+.narrative-item--outcome {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+  h3 { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
+}
+
+.outcome-stats {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  strong { font-size: 2.5rem; color: var(--color-text-heading); }
+  span { font-size: $font-size-sm; color: var(--color-text-muted); }
+}
+
+.project-gallery {
+  padding: 5rem 0;
+}
+
+.gallery-item {
+  margin: 0 0 3rem;
+  img { width: 100%; height: auto; border-radius: $border-radius * 0.5; }
+  figcaption { font-size: $font-size-sm; color: var(--color-text-muted); text-align: center; margin-top: 1rem; }
+}
+
+.project-details {
+  padding: 5rem 0;
+  background-color: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  h3 { font-size: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+}
+
+.details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li { margin-bottom: 0.75rem; }
+}
+
+.project-testimonial {
+  padding: 5rem 0;
+}

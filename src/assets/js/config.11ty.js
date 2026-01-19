@@ -1,0 +1,7 @@
+---
+    permalink: /assets/js / config.js
+---
+// Auto-generated config from Netlify environment variables
+export const CONFIG = {
+    APPSCRIPT_URL: "{{ env.appscriptUrl }}"
+};

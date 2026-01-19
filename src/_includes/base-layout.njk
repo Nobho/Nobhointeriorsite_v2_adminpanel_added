@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KY7VZ7S8G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7KY7VZ7S8G');
+</script>
+    {# ================================================================= #}
+    {# METADATA & SEO MANDATES (Ref: Section 3) #}
+    {# ================================================================= #}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# Page Title: Optimized for Brand Entity Clarity based on User Request. #}
+    {# We expect the page frontmatter to provide the FULL SEO title. #}
+    <title>{{ title }}</title>
+
+    {# Meta Description: Crucial for search engine snippets. #}
+    <meta name="description" content="{{ description }}">
+
+    {# Canonical URL #}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+    {# Social & Open Graph #}
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:type" content="website">
+    {% if project and project.hero_image %}
+    <meta property="og:image" content="{{ site.url }}{{ project.hero_image.url }}">
+    {% elseif service and service.imageLarge %}
+    <meta property="og:image" content="{{ site.url }}{{ service.imageLarge }}">
+    {% else %}
+    <meta property="og:image" content="{{ site.url }}/assets/images/logo.svg">
+    {% endif %}
+
+    {# Geo Tags for Local SEO (Reference: site.json) #}
+    <meta name="geo.region" content="BD-54"> {# Rajshahi Division #}
+    <meta name="geo.placename" content="Rajshahi">
+    <meta name="geo.position" content="{{ site.contact.geo.latitude }};{{ site.contact.geo.longitude }}">
+    <meta name="ICBM" content="{{ site.contact.geo.latitude }}, {{ site.contact.geo.longitude }}">
+
+    {# Canonical URL (Optional but Recommended): Helps prevent duplicate content issues. #}
+    {# <link rel="canonical" href="{{ site.url }}{{ page.url }}"> #}
+
+    {# Favicon Placeholders: Replace these with your actual favicon files. #}
+    <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+    {# ================================================================= #}
+    {# STYLESHEET & PERFORMANCE (Ref: Section 1 & 6) #}
+    {# ================================================================= #}
+    {# Links to the single, compiled CSS file. The SSG build process will handle SASS compilation. #}
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    {# ================================================================= #}
+    {# ANALYTICS & STRUCTURED DATA (Ref: Section 2 & 3) #}
+    {# ================================================================= #}
+    
+    <!-- 
+      DEVELOPER MANDATE: GOOGLE ANALYTICS 4
+      Insert your GA4 global site tag (gtag.js) here.
+      It should be placed in the <head> of every page.
+      You will get this script from your Google Analytics account.
+    -->
+
+
+    <!-- 
+      DEVELOPER MANDATE: SCHEMA.ORG JSON-LD FOR SEO
+      This block will be populated with page-specific structured data
+      to enhance search result appearance. We will create templates for
+      Organization, Service, Project, etc.
+    -->
+    {% include "schema.njk" %}
+    
+    {# NOTE ON SECURITY HEADERS (Ref: Section 5) #}
+    {# HSTS, CSP, and Referrer-Policy headers are NOT set here. #}
+    {# They must be configured at the server/hosting level (e.g., in a _headers file for Netlify/Vercel) #}
+    {# for maximum security. This is a crucial best practice. #}
+</head>
+
+{# The body tag is where we will set global font and color styles from the Brand Guide. #}
+<body>
+
+    {# ================================================================= #}
+    {# SITE STRUCTURE (Ref: Section 4 & 6) #}
+    {# ================================================================= #}
+    
+    {# Header: Pulls in the reusable header component. #}
+    {% include "header.njk" %}
+
+    {# Main Content Wrapper: The content from each individual page (e.g., index.html, about/index.html) #}
+    {# will be injected here. The 'safe' filter is critical to render HTML correctly. #}
+    <main>
+        {{ content | safe }}
+    </main>
+
+    {# Footer: Pulls in the reusable footer component. #}
+    {% include "footer.njk" %}
+
+    {# ================================================================= #}
+    {# SCRIPTS & COMPLIANCE (Ref: Section 1 & 5) #}
+    {# ================================================================= #}
+
+    <!-- 
+      DEVELOPER MANDATE: COOKIE CONSENT BANNER
+      The HTML markup and script for the cookie consent mechanism
+      should be placed here.
+    -->
+    
+    {# Main JavaScript File: The 'defer' attribute ensures the script loads in parallel #}
+    {# with page parsing and only executes after the HTML is fully parsed, #}
+    {# which is optimal for performance (CWV). #}
+    <script src="/assets/js/main.js" defer></script>
+
+
+
+</body>
+</html>
+</body>
+</html>

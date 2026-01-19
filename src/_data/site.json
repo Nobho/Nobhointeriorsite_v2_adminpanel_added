@@ -1,0 +1,38 @@
+{
+  "name": "Nobho",
+  "legalName": "Nobho Interior Design Studio",
+  "alternateNames": [
+    "Nobho",
+    "Nabho",
+    "নভো",
+    "নবো",
+    "নভো ইন্টেরিয়র",
+    "নবো ইন্টেরিয়র"
+  ],
+  "url": "https://www.nobho.com",
+  "author": "Nobho Interior Design Studio",
+  "description": "Nobho (নভো) is a premier interior design firm in Rajshahi, Bangladesh, specializing in residential and commercial interior architecture, 3D rendering, and execution.",
+  "foundedDate": "2020",
+  "contact": {
+    "email": "support@nobho.com",
+    "phone": "+880-234-567-8900",
+    "address": {
+      "streetAddress": "123 Shaheb Bazar",
+      "addressLocality": "Rajshahi",
+      "addressRegion": "Rajshahi Division",
+      "postalCode": "6000",
+      "addressCountry": "BD"
+    },
+    "geo": {
+      "latitude": "24.3636",
+      "longitude": "88.6241"
+    }
+  },
+  "socials": {
+    "instagram": "https://instagram.com/nobho",
+    "linkedin": "https://linkedin.com/company/nobho",
+    "facebook": "https://www.facebook.com/nobho.official",
+    "youtube": "https://youtube.com/nobho",
+    "tiktok": "https://tiktok.com/@nobho"
+  }
+}

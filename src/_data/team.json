@@ -1,0 +1,96 @@
+<<<<<<< HEAD
+{
+  "mission_statement": "To craft exceptionally beautiful and functional interior spaces that reflect the unique stories and aspirations of our clients, delivering every project with passion, precision, and integrity.",
+  "vision_statement": "To be a globally recognized leader in interior design, renowned for our timeless aesthetic, architectural rigor, and unwavering commitment to creating environments that inspire and endure for generations.",
+  "members": [
+    {
+      "name": "Abdullah Mubasshir",
+      "role": "Co-founder, Lead Designer",
+      "quote": "Every project is an opportunity to tell a unique story through design, harmonizing form and emotion.",
+      "bio": "With a deep expertise in spatial dynamics and material science, Abdullah leads the creative vision for our projects, ensuring every design is both innovative and timeless.",
+      "photo": "/assets/images/team/Mubasshir.jpg",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/abdullah-mubasshir-79a284321/"
+      }
+    },
+    {
+      "name": "MD. Azwad Riyan",
+      "role": "Co-founder, Technology & Visualization",
+      "quote": "Design is not just about aesthetics; it's about crafting experiences that resonate with the soul.",
+      "bio": "Azwad merges technology with design, pioneering our use of advanced 3D rendering and visualization tools to bring our creative concepts to life with stunning realism.",
+      "photo": "/assets/images/team/Riyan.jpg",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/azwad-riyan/"
+      }
+    },
+    {
+      "name": "Nusaiba Binte Mamun",
+      "role": "Co-founder, Client Relations & Management",
+      "quote": "We believe in creating spaces that are both beautiful and profoundly functional, tailored to the unique rhythms of life.",
+      "bio": "Nusaiba is the bridge between our clients' vision and our design team's execution, managing projects with meticulous care to ensure a seamless and enjoyable experience.",
+      "photo": "/assets/images/team/Nusaiba.jpg",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/nusaiba-binte-mamun/"
+      }
+    },
+    {
+      "name": "Shariar Hassan",
+      "role": "Co-founder, Art Direction & Styling",
+      "quote": "Our commitment is to transform visions into tangible realities, creating environments that inspire and endure.",
+      "bio": "An expert in art and composition, Shariar leads the final styling and art direction for our projects, ensuring every detail contributes to a cohesive and evocative narrative.",
+      "photo": "/assets/images/team/Shariar.png",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/shariar-hassan-34694b2a8/"
+      }
+    }
+  ]
+}
+=======
+{
+  "mission_statement": "To craft exceptionally beautiful and functional interior spaces that reflect the unique stories and aspirations of our clients, delivering every project with passion, precision, and integrity.",
+  "vision_statement": "To be a globally recognized leader in interior design, renowned for our timeless aesthetic, architectural rigor, and unwavering commitment to creating environments that inspire and endure for generations.",
+  "members": [
+    {
+      "name": "Abdullah Mubasshir",
+      "role": "Co-founder, Lead Designer",
+      "quote": "Every project is an opportunity to tell a unique story through design, harmonizing form and emotion.",
+      "bio": "With a deep expertise in spatial dynamics and material science, Abdullah leads the creative vision for our projects, ensuring every design is both innovative and timeless.",
+      "photo": "/assets/images/team/Mubasshir.jpg",
+      "socials": {
+        "linkedin": "https://linkedin.com/in/abdullah-mubasshir"
+      }
+    },
+    {
+      "name": "MD. Azwad Riyan",
+      "role": "Co-founder, Technology & Visualization",
+      "quote": "Design is not just about aesthetics; it's about crafting experiences that resonate with the soul.",
+      "bio": "Azwad merges technology with design, pioneering our use of advanced 3D rendering and visualization tools to bring our creative concepts to life with stunning realism.",
+      "photo": "/assets/images/team/Riyan.jpg",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/azwad-riyan/"
+      }
+    },
+    {
+      "name": "Nusaiba Binte Mamun",
+      "role": "Co-founder, Client Relations & Management",
+      "quote": "We believe in creating spaces that are both beautiful and profoundly functional, tailored to the unique rhythms of life.",
+      "bio": "Nusaiba is the bridge between our clients' vision and our design team's execution, managing projects with meticulous care to ensure a seamless and enjoyable experience.",
+      "photo": "/assets/images/team/Nusaiba.jpg",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/nusaiba-binte-mamun/"
+      }
+    },
+    {
+      "name": "Shariar Hasan",
+      "role": "Co-founder, Art Direction & Styling",
+      "quote": "Our commitment is to transform visions into tangible realities, creating environments that inspire and endure.",
+      "bio": "An expert in art and composition, Shariar leads the final styling and art direction for our projects, ensuring every detail contributes to a cohesive and evocative narrative.",
+      "photo": "/assets/images/team/Shariar.png",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/shariar-hassan-34694b2a8"
+      }
+    }
+  ]
+
+}
+>>>>>>> 846b73505baa9a0a83403583dea7d7a397ef0467

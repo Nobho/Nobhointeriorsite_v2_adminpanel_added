@@ -1,0 +1,89 @@
+---
+layout: "base-layout.njk"
+title: "Our Portfolio: Explore Our Visionary Designs"
+description: "Discover a collection of our most exquisite interior design projects, tailored to perfection and brought to life with passion and architecture-grade detailing."
+---
+
+<header class="page-header">
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p class="page-intro">Discover a collection of our most exquisite interior design projects, tailored to perfection and brought to life with passion.</p>
+    </div>
+</header>
+
+<section class="portfolio-main">
+    <div class="container">
+        {# ========================================================================= #}
+        {# FILTER UI (Ref: Content Section - Portfolio Index) #}
+        {# ========================================================================= #}
+        <aside class="portfolio-filters">
+            <h2 class="sr-only">Filter Projects</h2>
+            <form class="filter-form">
+                <div class="filter-group">
+                    <label for="filter-category">Category</label>
+                    <select id="filter-category" name="category">
+                        <option value="all">All</option>
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="hospitality">Hospitality</option>
+                        <option value="retail">Retail</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-style">Style</label>
+                    <select id="filter-style" name="style">
+                        <option value="all">All</option>
+                        <option value="modern">Modern</option>
+                        <option value="classic">Classic</option>
+                        <option value="minimalist">Minimalist</option>
+                        <option value="industrial">Industrial</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-location">Location</label>
+                    <select id="filter-location" name="location">
+                        <option value="all">All</option>
+                        <option value="new-york">New York</option>
+                        <option value="london">London</option>
+                        <option value="dubai">Dubai</option>
+                    </select>
+                </div>
+                <div class="filter-actions">
+                    <button type="reset" class="button-reset">Reset Filters</button>
+                </div>
+            </form>
+        </aside>
+
+        {# ========================================================================= #}
+        {# PROJECT THUMBNAIL GRID #}
+        {# ========================================================================= #}
+        <div class="project-grid">
+            {# Row 1 #}
+            <a href="/portfolio/luxury-apartment-renovation" class="project-card">
+                <div class="project-card__image-wrapper"><img src="/assets/images/placeholder-project-1.jpg" alt="A beautifully renovated luxury apartment living room." loading="lazy" width="800" height="600"></div>
+                <div class="project-card__content"><h3 class="project-card__title">Luxury Apartment Renovation</h3><p class="project-card__descriptor">New York</p></div>
+            </a>
+            <a href="/portfolio/modern-commercial-office" class="project-card">
+                <div class="project-card__image-wrapper"><img src="/assets/images/placeholder-project-2.jpg" alt="A modern and bright commercial office space with glass walls." loading="lazy" width="800" height="600"></div>
+                <div class="project-card__content"><h3 class="project-card__title">Modern Commercial Office</h3><p class="project-card__descriptor">London</p></div>
+            </a>
+            <a href="/portfolio/minimalist-hospitality-lounge" class="project-card">
+                <div class="project-card__image-wrapper"><img src="/assets/images/placeholder-project-3.jpg" alt="A minimalist hotel lounge with Scandinavian furniture." loading="lazy" width="800" height="600"></div>
+                <div class="project-card__content"><h3 class="project-card__title">Minimalist Hospitality Lounge</h3><p class="project-card__descriptor">Dubai</p></div>
+            </a>
+            {# Row 2 #}
+            <a href="/portfolio/classic-retail-boutique" class="project-card">
+                <div class="project-card__image-wrapper"><img src="/assets/images/placeholder-project-4.jpg" alt="Interior of a classic, high-end retail boutique." loading="lazy" width="800" height="600"></div>
+                <div class="project-card__content"><h3 class="project-card__title">Classic Retail Boutique</h3><p class="project-card__descriptor">Paris</p></div>
+            </a>
+            <a href="/portfolio/industrial-loft-conversion" class="project-card">
+                <div class="project-card__image-wrapper"><img src="/assets/images/placeholder-project-5.jpg" alt="An industrial loft with exposed brick and ductwork." loading="lazy" width="800" height="600"></div>
+                <div class="project-card__content"><h3 class="project-card__title">Industrial Loft Conversion</h3><p class="project-card__descriptor">New York</p></div>
+            </a>
+            <a href="/portfolio/scandinavian-family-home" class="project-card">
+                <div class="project-card__image-wrapper"><img src="/assets/images/placeholder-project-6.jpg" alt="A bright family home with Scandinavian design principles." loading="lazy" width="800" height="600"></div>
+                <div class="project-card__content"><h3 class="project-card__title">Scandinavian Family Home</h3><p class="project-card__descriptor">Copenhagen</p></div>
+            </a>
+        </div>
+    </div>
+</section>

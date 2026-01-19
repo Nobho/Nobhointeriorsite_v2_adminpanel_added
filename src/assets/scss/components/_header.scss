@@ -1,0 +1,164 @@
+// src/assets/scss/components/_header.scss
+
+.site-header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-card);
+  position: relative;
+  // Ensure the header itself is high up, but we'll handle specific z-indexes below
+  z-index: 1000;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo img {
+    height: 48px; // Increased by 50% from 32px
+    display: block;
+
+    @media (min-width: 768px) {
+      height: 60px;
+    }
+
+    // Increased by 50% from 40px
+  }
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-list {
+  display: flex;
+  gap: 1rem; // Reduced gap since buttons are wider than text
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    display: inline-block;
+    padding: 0.5rem 1rem; // Slightly smaller padding than main CTA to fit better
+    background-color: var(--color-text-heading); // Using the navy brand color
+    color: var(--color-bg-card); // White text
+    border-radius: $border-radius;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color $transition-speed, color $transition-speed;
+
+    &:hover {
+      background-color: var(--color-link-hover); // Teal on hover for contrast
+      color: var(--color-text-heading); // Navy text on hover
+      text-decoration: none;
+    }
+  }
+}
+
+.mobile-nav-toggle {
+  display: none; // Hidden on desktop
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 20px;
+  position: relative;
+
+  // CRITICAL: Ensure the button is ALWAYS above the slide-out menu
+  z-index: 2001;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text-heading);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  &::before {
+    top: 4px;
+    transform-origin: center;
+  }
+
+  &::after {
+    bottom: 4px;
+    transform-origin: center;
+  }
+}
+
+// Mobile Styles (Tablet and below)
+@media (max-width: 991px) {
+
+  // The Slide-Out Menu
+  .site-header__nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 70%; // Covers 70% of screen
+    background: var(--color-bg-card);
+
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 2rem;
+
+    transform: translateX(100%); // Hidden by default
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1500; // Lower than the toggle button (2001)
+
+    // Add a strong shadow to separate it from the content behind
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    a {
+      font-size: 1.25rem;
+    }
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  // Mobile CTA Button
+  .site-header__actions .button--primary {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  // === NAV OPEN STATE ===
+  .site-header.nav-open {
+
+    // Slide the menu in
+    .site-header__nav {
+      transform: translateX(0);
+    }
+
+    // Transform the Hamburger into an X
+    .mobile-nav-toggle {
+      &::before {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        background-color: var(--color-text-heading); // Ensure visible
+      }
+
+      &::after {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+        background-color: var(--color-text-heading); // Ensure visible
+      }
+    }
+  }
+}

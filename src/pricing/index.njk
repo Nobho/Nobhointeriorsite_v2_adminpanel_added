@@ -1,0 +1,137 @@
+---
+layout: "base-layout.njk"
+title: "Transparent Pricing"
+description: "Clear, competitive pricing based on square footage. Choose the package that fits your needs."
+---
+
+<header class="page-header">
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p class="page-intro">World-class design, tailored to your budget. Select a package below to view details.</p>
+    </div>
+</header>
+
+<section class="pricing-section">
+    <div class="container container--narrow">
+        
+        {# ================================================================= #}
+        {# 1. PRICING TABS (The Top Bar) #}
+        {# ================================================================= #}
+        <div class="pricing-tabs">
+            <button class="pricing-tab active" data-target="plan-essential">
+                Concept Essentials
+            </button>
+            <button class="pricing-tab" data-target="plan-premium">
+                Premium Design
+                <span class="tab-badge">Popular</span>
+            </button>
+            <button class="pricing-tab" data-target="plan-luxury">
+                Signature Luxury
+            </button>
+        </div>
+
+        {# ================================================================= #}
+        {# 2. PRICING CONTENT (The Panels) #}
+        {# ================================================================= #}
+        <div class="pricing-content-wrapper">
+            
+            {# Panel 1: Essentials #}
+            <div id="plan-essential" class="pricing-panel active">
+                <div class="panel-header">
+                    <h2>Concept Essentials</h2>
+                    <p>Perfect for clients who need a professional vision but have their own contractors.</p>
+                    <div class="panel-price">
+                        <span class="currency-value" data-bdt="8" data-usd="0.08">8</span>
+                        <span class="currency-unit">per sq. ft.</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h3>What's Included:</h3>
+                    <ul class="feature-list">
+                        <li class="included">2D Furniture Layout</li>
+                        <li class="included">Mood Board & Color Palette</li>
+                        <li class="included">1 Round of Revisions</li>
+                        <li class="excluded">3D Photorealistic Renders</li>
+                        <li class="excluded">Procurement List</li>
+                    </ul>
+                    <div class="button-group">
+                        <a href="/contact" class="button button--secondary">Select Essentials</a>
+                        <!-- HOW TO LINK: Change the href below to one of your project pages -->
+                        <a href="/portfolio/luxury-apartment-renovation" class="button button--outline">See Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            {# Panel 2: Premium #}
+            <div id="plan-premium" class="pricing-panel">
+                <div class="panel-header">
+                    <h2>Premium Design</h2>
+                    <p>A complete design package with photorealistic 3D renders to visualize your future home.</p>
+                    <div class="panel-price">
+                        <span class="currency-value" data-bdt="40" data-usd="0.40">40</span>
+                        <span class="currency-unit">per sq. ft.</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h3>What's Included:</h3>
+                    <ul class="feature-list">
+                        <li class="included">2D Detailed Layouts</li>
+                        <li class="included"><strong>Photorealistic 3D Renders</strong></li>
+                        <li class="included">False Ceiling Design</li>
+                        <li class="included">Electric & Plumbing Layouts</li>
+                        <li class="included">Unlimited Revisions (Design Phase)</li>
+                    </ul>
+                    <div class="button-group">
+                        <a href="/contact" class="button button--primary">Select Premium</a>
+                        <!-- HOW TO LINK: Change the href below -->
+                        <a href="/portfolio/modern-commercial-office" class="button button--outline">See Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            {# Panel 3: Luxury #}
+            <div id="plan-luxury" class="pricing-panel">
+                <div class="panel-header">
+                    <h2>Signature Luxury</h2>
+                    <p>For those who want architecture-grade detailing and complete project oversight.</p>
+                    <div class="panel-price">
+                        <span class="currency-value" data-bdt="60" data-usd="0.60">60</span>
+                        <span class="currency-unit">per sq. ft.</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h3>What's Included:</h3>
+                    <ul class="feature-list">
+                        <li class="included">Everything in Premium</li>
+                        <li class="included">Material Selection Trips</li>
+                        <li class="included">Custom Furniture Design</li>
+                        <li class="included">VR Walkthrough</li>
+                        <li class="included">Procurement Assistance</li>
+                        <li class="included">Priority Support</li>
+                    </ul>
+                    <div class="button-group">
+                        <a href="/contact" class="button button--secondary">Select Signature</a>
+                        <!-- HOW TO LINK: Change the href below -->
+                        <a href="/portfolio/minimalist-hospitality-lounge" class="button button--outline">See Demo</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {# ================================================================= #}
+        {# 3. FOOTER CONTROLS (Currency Dropdown) #}
+        {# ================================================================= #}
+        <div class="pricing-footer-controls">
+            <div class="currency-selector-wrapper">
+                <label for="currency-select">Display Currency:</label>
+                <select id="currency-select" class="currency-dropdown">
+                    <option value="BDT">BDT (৳) - Bangladeshi Taka</option>
+                    <option value="USD">USD ($) - US Dollar</option>
+                </select>
+            </div>
+            <p class="pricing-note">* Minimum project area applies (typically 500 sq. ft.). Final quote provided after consultation.</p>
+        </div>
+
+    </div>
+</section>

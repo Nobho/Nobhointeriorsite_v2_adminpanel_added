@@ -1,0 +1,57 @@
+[
+  {
+    "category": "Services & Scope",
+    "items": [
+      {
+        "question": "Do you only do design, or do you handle construction too?",
+        "answer": "Our primary focus is on the specialized Design Phase—creating the concept, 3D visualizations, and detailed architectural drawings. We do not currently have an in-house construction team. Instead, we provide a comprehensive 'Design Package' that you can hand to your preferred contractor for execution. We are happy to coordinate with them to ensure the design is followed precisely."
+      },
+      {
+        "question": "Can you handle procurement (buying furniture and materials)?",
+        "answer": "Yes, but it is optional. Our standard service focuses on design and specification. However, if you prefer a turnkey experience where we handle ordering, shipping, and logistics, we can discuss adding a Procurement Phase to your project scope."
+      },
+      {
+        "question": "Do you work with specific design styles?",
+        "answer": "We pride ourselves on flexibility. While our signature approach involves architecture-grade detailing and warm aesthetics, we tailor every project to the client's vision. Whether you prefer Modern, Classic, Industrial, or Minimalist, we are ready to bring that specific style to life."
+      },
+      {
+        "question": "Can we incorporate my existing furniture?",
+        "answer": "Absolutely. We believe a home should tell your story. If you have cherished pieces or antiques you wish to keep, we will seamlessly integrate them into the new design plan."
+      }
+    ]
+  },
+  {
+    "category": "Process & Timeline",
+    "items": [
+      {
+        "question": "How long does a typical project take?",
+        "answer": "Timelines vary based on scope, but generally, a standard Design Phase takes approximately 1 month. For comprehensive interior design (after floor plans are finalized), the process typically takes up to 2 months. We are flexible and can often adjust our workflow to meet your specific deadlines."
+      },
+      {
+        "question": "How do revisions work?",
+        "answer": "We invest heavily in the 'Discovery' phase—listening to your needs to get the concept right the first time. However, to ensure you are 100% satisfied, we include up to three (3) rounds of revisions in our standard contract. This ensures we can fine-tune every detail without stalling the project's momentum."
+      },
+      {
+        "question": "Do you take on remote or international projects?",
+        "answer": "Yes, we work globally. For international projects, we ask that you provide detailed floor plans and measurements. For projects located within Bangladesh, our team can visit the site personally to conduct a professional survey and measurement."
+      }
+    ]
+  },
+  {
+    "category": "Pricing & Logistics",
+    "items": [
+      {
+        "question": "How do you charge for your services?",
+        "answer": "We believe in transparency. Our design fees are calculated based on the square footage (area) of the space we are designing. This ensures you are paying fair value for the exact scope of work required, rather than a vague flat fee or an unpredictable hourly rate."
+      },
+      {
+        "question": "Is there a minimum project size?",
+        "answer": "Currently, we do not have a strict minimum square footage requirement. We are open to discussing projects of various sizes, from single rooms to full-home renovations, provided we feel we can add significant value to the space."
+      },
+      {
+        "question": "Do you offer trade discounts on furniture?",
+        "answer": "We have relationships with various vendors. Since every project is unique, we encourage you to contact us directly to discuss how we can leverage these connections to benefit your specific budget."
+      }
+    ]
+  }
+]

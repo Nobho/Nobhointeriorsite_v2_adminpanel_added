@@ -1,0 +1,120 @@
+// src/assets/scss/components/_about-page.scss
+
+.brand-story-section {
+  padding: 4rem 0;
+  background-color: var(--color-bg-card);
+}
+
+.story-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+
+  @media (min-width: 992px) {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.story-narrative h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.philosophy-item {
+  &:not(:last-child) { margin-bottom: 2rem; }
+  h3 { font-size: 1.25rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  p { font-family: $font-family-serif; font-size: 1.1rem; }
+}
+
+.team-section {
+  padding: 5rem 0;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.team-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: $border-radius;
+  text-align: center;
+  padding: 2rem;
+  
+  &__image-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  &__name { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  &__role { color: var(--color-text-muted); margin-bottom: 1rem; }
+  &__quote {
+    border: none;
+    margin: 0 0 1rem;
+    p { font-style: italic; font-family: $font-family-serif; color: var(--color-text-body); font-size: 1.1rem; }
+  }
+  &__bio { font-size: $font-size-sm; margin-bottom: 1.5rem; }
+  &__socials a { font-weight: 600; text-transform: uppercase; font-size: $font-size-sm; }
+}
+
+.faq-section {
+  padding: 5rem 0;
+  background-color: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-accordion details {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.5rem 0;
+  
+  summary {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-heading);
+    cursor: pointer;
+    list-style: none; // Remove default marker
+    position: relative;
+    padding-right: 2rem;
+    
+    &::after { // Custom arrow
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.5rem;
+      transition: transform $transition-speed;
+    }
+  }
+  
+  p { margin: 1rem 0 0; }
+}
+
+.faq-accordion details[open] > summary::after {
+  transform: rotate(45deg);
+}
+
+
+.faq-category {
+  margin-bottom: 3rem;
+}
+
+.faq-category__title {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}

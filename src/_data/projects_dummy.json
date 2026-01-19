@@ -1,0 +1,106 @@
+<<<<<<< HEAD
+[
+  {
+    "slug": "luxury-apartment-renovation",
+    "title": "Luxury Apartment Renovation",
+    "meta_description": "A complete overhaul of a pre-war Manhattan apartment, balancing classic architecture with modern comforts and state-of-the-art technology.",
+    "category": "Residential",
+    "location": "New York",
+    "hero_image": {
+      "url": "/assets/images/placeholder-project-1.jpg",
+      "alt": "A beautifully renovated luxury apartment living room with a view of the city."
+    },
+    "challenge": "To modernize a historic pre-war apartment for a young family, increasing natural light and creating an open-plan living space without sacrificing the unit's original architectural character.",
+    "insight": "By embracing the 'bones' of the apartment, we could use modern interventions—like a floating steel staircase and custom minimalist cabinetry—as a counterpoint to the classic mouldings and herringbone floors.",
+    "solution": "We reconfigured the layout to create a large kitchen and living area, specified custom lighting to brighten the space, and used a palette of warm neutrals and rich textures to create a cozy yet sophisticated atmosphere.",
+    "outcome": {
+      "stat1": {
+        "value": "+40%",
+        "label": "Increase in Natural Light"
+      },
+      "stat2": {
+        "value": "12 Weeks",
+        "label": "On-Schedule Completion"
+      }
+    },
+    "gallery": [
+      {
+        "url": "/assets/images/placeholder-project-detail-1.jpg",
+        "alt": "Detail shot of the custom marble kitchen island.",
+        "caption": "The Calacatta marble island serves as the social hub of the new open-plan space."
+      },
+      {
+        "url": "/assets/images/placeholder-project-detail-2.jpg",
+        "alt": "The master bedroom with floor-to-ceiling windows.",
+        "caption": "A serene master suite was designed as a private retreat from the bustling city."
+      }
+    ],
+    "credits": [
+      {
+        "role": "Lead Designer",
+        "name": "Abdullah Mubasshir"
+      },
+      {
+        "role": "Project Manager",
+        "name": "Nusaiba Binte Mamun"
+      },
+      {
+        "role": "Photography",
+        "name": "Shariar Hassan"
+      }
+    ],
+    "materials": [
+      "Calacatta Marble",
+      "White Oak Flooring",
+      "Custom Steelwork",
+      "Belgian Linen"
+    ],
+    "testimonial": {
+      "quote": "Nobho understood our vision perfectly. They transformed our cramped, dark apartment into a bright, functional, and beautiful home that our family will cherish for years to come.",
+      "cite": "The Doe Family, Manhattan"
+    }
+  }
+=======
+[
+  {
+    "slug": "luxury-apartment-renovation",
+    "title": "Luxury Apartment Renovation",
+    "meta_description": "A complete overhaul of a pre-war Manhattan apartment, balancing classic architecture with modern comforts and state-of-the-art technology.",
+    "category": "Residential",
+    "location": "New York",
+    "hero_image": {
+      "url": "/assets/images/placeholder-project-1.jpg",
+      "alt": "A beautifully renovated luxury apartment living room with a view of the city."
+    },
+    "challenge": "To modernize a historic pre-war apartment for a young family, increasing natural light and creating an open-plan living space without sacrificing the unit's original architectural character.",
+    "insight": "By embracing the 'bones' of the apartment, we could use modern interventions—like a floating steel staircase and custom minimalist cabinetry—as a counterpoint to the classic mouldings and herringbone floors.",
+    "solution": "We reconfigured the layout to create a large kitchen and living area, specified custom lighting to brighten the space, and used a palette of warm neutrals and rich textures to create a cozy yet sophisticated atmosphere.",
+    "outcome": {
+      "stat1": { "value": "+40%", "label": "Increase in Natural Light" },
+      "stat2": { "value": "12 Weeks", "label": "On-Schedule Completion" }
+    },
+    "gallery": [
+      {
+        "url": "/assets/images/placeholder-project-detail-1.jpg",
+        "alt": "Detail shot of the custom marble kitchen island.",
+        "caption": "The Calacatta marble island serves as the social hub of the new open-plan space."
+      },
+      {
+        "url": "/assets/images/placeholder-project-detail-2.jpg",
+        "alt": "The master bedroom with floor-to-ceiling windows.",
+        "caption": "A serene master suite was designed as a private retreat from the bustling city."
+      }
+    ],
+    "credits": [
+      { "role": "Lead Designer", "name": "Abdullah Mubasshir" },
+      { "role": "Project Manager", "name": "Nusaiba Binte Mamun" },
+      { "role": "Photography", "name": "Shariar Hasan" }
+    ],
+    "materials": ["Calacatta Marble", "White Oak Flooring", "Custom Steelwork", "Belgian Linen"],
+    "testimonial": {
+      "quote": "Nobho understood our vision perfectly. They transformed our cramped, dark apartment into a bright, functional, and beautiful home that our family will cherish for years to come.",
+      "cite": "The Doe Family, Manhattan"
+    }
+  }
+>>>>>>> 846b73505baa9a0a83403583dea7d7a397ef0467
+]

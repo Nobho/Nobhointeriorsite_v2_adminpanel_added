@@ -1,0 +1,97 @@
+[
+  {
+    "slug": "space-planning-layout-optimization",
+    "title": "Space Planning & Layout Optimization",
+    "meta_description": "Fix the layout first—smart zoning, circulation, furniture planning, and storage logic. Ideal for small apartments, awkward rooms, and new flats.",
+    "intro": "Before colors and decor, we solve the layout. This service creates a clear, functional plan so your space feels bigger, calmer, and easier to live in.",
+    "long_description": "Space planning is the foundation of good interior design. We analyze your room sizes, doors/windows, daily routines, storage needs, and furniture requirements to build a layout that flows naturally. You’ll get multiple layout options, then a final plan with key dimensions so you can implement confidently—whether you’re moving into a new flat, fixing an awkward room, or planning before construction.",
+    "image": "/assets/images/services/Space Planning & Layout Optimization-small.png",
+    "imageLarge": "/assets/images/services/Space Planning & Layout Optimization.png",
+    "deliverables": [
+      "Client brief (needs, lifestyle, budget, style direction)",
+      "Existing layout review (or base plan clean-up)",
+      "Zoning & circulation logic (what goes where + why)",
+      "2–3 layout options (2D)",
+      "Final furniture plan (2D) with key dimensions",
+      "Basic storage suggestions (where to add/avoid)",
+      "Implementation notes (quick guidance for setup)"
+    ],
+    "investment": "Starting from ৳8,000. Final cost depends on area size, number of rooms, and number of revisions."
+  },
+  {
+    "slug": "room-makeover-single-room-design",
+    "title": "Room Makeover (Single Room Design)",
+    "meta_description": "One room done properly—layout, color/material palette, and furniture direction. Perfect for budget upgrades, rentals, and fast transformations.",
+    "intro": "Want a real transformation without committing to a full home project? We design for one room end-to-end so it looks intentional, balanced, and truly you.",
+    "long_description": "This service is perfect when you want maximum impact with a focused budget. We start with function and layout, then build the visual story—colors, materials, lighting mood, and furniture suggestions that fit your space. If you want, we can add 3D views to help you visualize the final look before you buy anything.",
+    "image": "/assets/images/services/Room Makeover (Single Room Design)-small.png",
+    "imageLarge": "/assets/images/services/Room Makeover (Single Room Design).png",
+    "deliverables": [
+      "Client brief + style direction",
+      "Optimized furniture layout (2D)",
+      "Moodboard (look & feel)",
+      "Color + material palette (walls, flooring, fabrics)",
+      "Furniture & decor suggestions (with budget ranges)",
+      "Lighting suggestions (basic layer plan)",
+      "Optional: 3D views / renders (add-on)"
+    ],
+    "investment": "Starting from ৳12,000. Price varies by room type, detail level, and whether 3D is included."
+  },
+  {
+    "slug": "full-home-interior-design",
+    "title": "Full Home Interior Design",
+    "meta_description": "End-to-end interior design for apartments/houses—layout, ceiling/lighting concepts, key 3D renders, and BOQ-level budgeting for confident execution.",
+    "intro": "A complete, cohesive home—planned properly, designed beautifully, and prepared for real-world execution.",
+    "long_description": "This is our signature service for homeowners moving in, renovating, or building with intention. We design your home as a connected system—flow, storage, comfort, and aesthetics—so every room feels like it belongs to the same story. You’ll receive clear drawings and visuals, plus BOQ/basic budget support so decisions are practical and implementation becomes easier for you and your contractor.",
+    "image": "/assets/images/services/Full Home Interior Design-small.png",
+    "imageLarge": "/assets/images/services/Full Home Interior Design.png",
+    "deliverables": [
+      "Full client brief + site/plan analysis",
+      "Space planning for all rooms (2D)",
+      "Concept direction for each zone (mood + palette)",
+      "Key drawings (as applicable): layout plan, ceiling concept, lighting concept",
+      "Material & finish schedule (key selections)",
+      "Key 3D renders for main spaces (living/dining/master as priority)",
+      "BOQ/basic budget planning (cost direction + item grouping)",
+      "Execution notes for contractor alignment"
+    ],
+    "investment": "Starting from ৳50,000. Depends on total area, number of rooms, scope, and rendering requirements."
+  },
+  {
+    "slug": "commercial-starter-package",
+    "title": "Commercial Starter Package (Office / Shop / Café)",
+    "meta_description": "Brand-aligned commercial interiors—layout, customer flow, and practical finishes. Ideal for small businesses needing a smart fit-out fast.",
+    "intro": "A commercial space must look good—and work hard. We design for flow, function, and brand so your business feels professional from day one.",
+    "long_description": "This package is designed for small businesses and startups that need a strong, implementable design quickly. We focus on customer journey, staff workflow, seating/aisle logic, storage, and durable materials that fit your budget. You’ll receive a clear space plan, concept direction, and key renders that help you approve the design and start execution confidently.",
+    "image": "/assets/images/services/Commercial Starter Package-small.png",
+    "imageLarge": "/assets/images/services/Commercial Starter Package.png",
+    "deliverables": [
+      "Business brief (brand vibe, operations, budget, timeline)",
+      "Optimized space plan (2D) with flow logic",
+      "Zoning plan (public/service/back-of-house as applicable)",
+      "Concept direction (materials + mood + brand alignment)",
+      "Key render(s) for main view areas",
+      "Basic signage/branding placement suggestions",
+      "Practical material suggestions (durability + maintenance)"
+    ],
+    "investment": "Starting from ৳25,000. Final cost depends on floor area, business type, and rendering scope."
+  },
+  {
+    "slug": "3d-visualization-only",
+    "title": "3D Visualization Only (Renders / Walkthrough)",
+    "meta_description": "High-quality 3D renders and optional walkthroughs for approvals and marketing—ideal if you already have drawings and need strong visuals.",
+    "intro": "If your plan is ready and you need visuals, we’ll turn it into clear, compelling renders that help approvals, client confidence, and marketing.",
+    "long_description": "This service is for clients who already have finalized drawings (architectural or interior) and want professional visualization. We focus on accurate modeling, lighting mood, material realism, and camera angles that communicate the design clearly. Ideal for developers, architects, contractors, and businesses preparing for presentation or sales.",
+    "image": "/assets/images/services/3D Visualization Only-small.png",
+    "imageLarge": "/assets/images/services/3D Visualization Only.png",
+    "deliverables": [
+      "Model setup based on provided drawings (CAD/PDF)",
+      "Material + lighting setup (aligned to your references)",
+      "High-resolution still renders (as per package)",
+      "Camera angle planning (best views for communication)",
+      "Optional: short walkthrough animation (add-on)",
+      "Revision round for minor visual adjustments (as per package)"
+    ],
+    "investment": "Starting from ৳10,000. Pricing depends on number of views, complexity, and whether walkthrough is included."
+  }
+]

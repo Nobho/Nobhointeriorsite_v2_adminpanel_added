@@ -1,0 +1,118 @@
+// src/assets/scss/components/_process-page.scss
+
+.process-timeline {
+  padding: 4rem 0;
+}
+
+// The <ol> element that acts as the timeline container.
+.process-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+
+  // The main vertical timeline bar.
+  // This pseudo-element is attached to the parent <ol> for stability.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    left: 40px;
+    width: 2px;
+    background-color: var(--color-border);
+    
+    // On small screens, move the bar to the far left.
+    @media (max-width: 767px) {
+      left: 20px;
+    }
+  }
+}
+
+.process-step {
+  position: relative;
+  padding-left: 90px; // Space for the number and timeline graphic
+  margin-bottom: 3rem;
+
+  @media (max-width: 767px) {
+    padding-left: 60px;
+  }
+
+  // The circular marker on the timeline bar for each step.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.5rem;
+    left: 32px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    border: 2px solid $teal-accessible;
+    z-index: 1;
+
+    @media (max-width: 767px) {
+      left: 12px;
+    }
+  }
+}
+
+.process-step__content {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: $border-radius;
+  padding: 2rem;
+}
+
+// The large step number (01, 02, etc.)
+.process-step__number {
+  position: absolute;
+  top: -0.5rem;
+  left: -40px;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #E5E7EB; // A very light, subtle color from the palette
+  z-index: -1;
+  // Use a text-stroke for a premium, outlined look
+  -webkit-text-stroke: 1px var(--color-border);
+  color: transparent;
+
+  @media (min-width: 992px) {
+    font-size: 5rem;
+    top: -1rem;
+    left: -50px;
+  }
+}
+
+.process-step__title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.process-step__description {
+  margin-bottom: 1.5rem;
+}
+
+.process-step__meta {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+
+  span {
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.process-cta {
+  background-color: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
+  padding: 5rem 0;
+  text-align: center;
+  
+  h2 { margin-bottom: 1.5rem; }
+  p { max-width: 600px; margin: 0 auto 2rem; }
+}

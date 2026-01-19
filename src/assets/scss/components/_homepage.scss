@@ -1,0 +1,74 @@
+// src/assets/scss/components/_homepage.scss
+
+.hero {
+  background-color: var(--color-bg-card); // Or a light navy tint
+  padding: 6rem 0;
+  text-align: center;
+
+  &__headline {
+    font-size: 3.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__subheadline {
+    font-size: $font-size-lg;
+    color: var(--color-text-muted);
+    max-width: 650px;
+    margin: 1.5rem auto 2.5rem;
+  }
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.featured-projects {
+  padding: 5rem 0;
+}
+
+.testimonial-snippet {
+  background-color: var(--color-bg-card);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.testimonial-quote {
+  border: none;
+  margin: 0;
+  
+  p {
+    font-family: $font-family-serif;
+    font-size: 1.75rem;
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--color-text-heading);
+    max-width: 750px;
+    margin: 0 auto 1.5rem;
+  }
+
+  cite {
+    font-family: $font-family-sans;
+    font-style: normal;
+    font-size: $font-size-base;
+    color: var(--color-text-muted);
+  }
+}
+
+.cta-contact {
+  padding: 5rem 0;
+  
+  .container {
+    text-align: center;
+    max-width: 800px;
+  }
+  
+  &__reply-note {
+    margin-top: 1rem;
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+  }
+}

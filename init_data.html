@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuestAdmin - Initialize Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #6366f1;
+            margin-top: 0;
+        }
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #5558e3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #log {
+            background: #1e1e2d;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 QuestAdmin Data Initializer</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Before you start:</strong>
+            <ul>
+                <li>Make sure you're logged into QuestAdmin</li>
+                <li>All 4 users must exist in Firebase Authentication</li>
+                <li>UIDs in the script must be correct</li>
+            </ul>
+        </div>
+        
+        <button id="initBtn" onclick="initializeData()">Initialize Database</button>
+        
+        <div id="log"></div>
+    </div>
+
+    <script type="module">
+        import { getFirestore, collection, doc, setDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        
+        // Firebase config (from your config.js)
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0M-ClYh7QuKRf2bauy_5QwFmGyNzv0rg",
+            authDomain: "nobhowebsite.firebaseapp.com",
+            projectId: "nobhowebsite",
+            storageBucket: "nobhowebsite.firebasestorage.app",
+            messagingSenderId: "46215837869",
+            appId: "1:46215837869:web:1b5840d3780d32f91aae24",
+            measurementId: "G-SMWW4ZS67N"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : '📝';
+            logDiv.innerHTML += `[${timestamp}] ${prefix} ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        window.initializeData = async function() {
+            const btn = document.getElementById('initBtn');
+            btn.disabled = true;
+            btn.textContent = 'Initializing...';
+            
+            document.getElementById('log').innerHTML = '';
+            log('🚀 Starting QuestAdmin initialization...', 'info');
+            
+            // User IDs (from your updated script)
+            const USER_IDS = {
+                azwad: "VZe8mdHhVbYQpZ1i32h0CaTPCmW2",
+                nusaiba: "Pm8Mg8bQcSjdAH4OvLdM6p8FYA9f1",
+                abdullah: "nW6evgEsimbq3gkyj9xJfdxlEoO2",
+                shariar: "xvFe6Fc2DuX6HlfQFm7cLOv3nIg1"
+            };
+            
+            // User profiles
+            const users = [
+                {
+                    uid: USER_IDS.azwad,
+                    name: "MD. Azwad Riyan",
+                    email: "azwadriyan@gmail.com",
+                    role: "admin",
+                    photoUrl: "/assets/images/team/Riyan.jpg",
+                    title: "Co-founder, Technology & Visualization",
+                    telegramId: "1276130679",
+                    status: "active"
+                },
+                {
+                    uid: USER_IDS.nusaiba,
+                    name: "Nusaiba Binte Mamun",
+                    email: "nusaiba.mamun20@gmail.com",
+                    role: "moderator",
+                    photoUrl: "/assets/images/team/Nusaiba.jpg",
+                    title: "Co-founder, Client Relations & Management",
+                    telegramId: "1617312734",
+                    status: "active"
+                },
+                {
+                    uid: USER_IDS.abdullah,
+                    name: "Abdullah Mubasshir",
+                    email: "abdullahmubasshir786@gmail.com",
+                    role: "employee",
+                    photoUrl: "/assets/images/team/Mubasshir.jpg",
+                    title: "Co-founder, Lead Designer",
+                    telegramId: "5243994015",
+                    status: "active"
+                },
+                {
+                    uid: USER_IDS.shariar,
+                    name: "Shariar Hasan",
+                    email: "shariarhassan2002@gmail.com",
+                    role: "employee",
+                    photoUrl: "/assets/images/team/Shariar.png",
+                    title: "Co-founder, Art Direction & Styling",
+                    telegramId: "1367897356",
+                    status: "active"
+                }
+            ];
+            
+            // Create users
+            for (const user of users) {
+                try {
+                    await setDoc(doc(db, "users", user.uid), {
+                        name: user.name,
+                        email: user.email,
+                        role: user.role,
+                        photoUrl: user.photoUrl,
+                        title: user.title,
+                        telegramId: user.telegramId,
+                        status: user.status,
+                        createdAt: serverTimestamp(),
+                        lastActive: serverTimestamp()
+                    });
+                    log(`Created user: ${user.name} (${user.role})`, 'success');
+                } catch (e) {
+                    log(`Failed to create ${user.name}: ${e.message}`, 'error');
+                }
+            }
+            
+            // Sample tasks
+            const now = new Date();
+            const tasks = [
+                {
+                    title: "Create 3D Rendering of Residential Building",
+                    description: "High-quality 3D visualization for the new residential project in Gulshan",
+                    assignedTo: USER_IDS.azwad,
+                    assignedToName: "MD. Azwad Riyan",
+                    assignedToPhoto: "/assets/images/team/Riyan.jpg",
+                    status: "in_progress",
+                    priority: "high",
+                    deadline: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+                },
+                {
+                    title: "Client Meeting - Dhanmondi Apartment",
+                    description: "Initial consultation with client for interior design of 2500 sqft apartment",
+                    assignedTo: USER_IDS.nusaiba,
+                    assignedToName: "Nusaiba Binte Mamun",
+                    assignedToPhoto: "/assets/images/team/Nusaiba.jpg",
+                    status: "pending",
+                    priority: "medium",
+                    deadline: new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000)
+                },
+                {
+                    title: "Material Selection for Office Project",
+                    description: "Finalize flooring, wall finishes, and furniture for corporate office",
+                    assignedTo: USER_IDS.abdullah,
+                    assignedToName: "Abdullah Mubasshir",
+                    assignedToPhoto: "/assets/images/team/Mubasshir.jpg",
+                    status: "in_progress",
+                    priority: "high",
+                    deadline: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000)
+                },
+                {
+                    title: "Art Curation for Luxury Villa",
+                    description: "Select and arrange artwork for the main living areas",
+                    assignedTo: USER_IDS.shariar,
+                    assignedToName: "Shariar Hasan",
+                    assignedToPhoto: "/assets/images/team/Shariar.png",
+                    status: "pending",
+                    priority: "medium",
+                    deadline: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+                },
+                {
+                    title: "Update Portfolio Website",
+                    description: "Add latest project photos and case studies",
+                    assignedTo: USER_IDS.azwad,
+                    assignedToName: "MD. Azwad Riyan",
+                    assignedToPhoto: "/assets/images/team/Riyan.jpg",
+                    status: "done",
+                    priority: "low",
+                    deadline: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000),
+                    completedAt: serverTimestamp()
+                },
+                {
+                    title: "Prepare Presentation for Investor Meeting",
+                    description: "Create comprehensive presentation showcasing recent projects",
+                    assignedTo: USER_IDS.nusaiba,
+                    assignedToName: "Nusaiba Binte Mamun",
+                    assignedToPhoto: "/assets/images/team/Nusaiba.jpg",
+                    status: "in_progress",
+                    priority: "high",
+                    deadline: new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000)
+                }
+            ];
+            
+            // Create tasks
+            for (const task of tasks) {
+                try {
+                    const taskData = {
+                        ...task,
+                        createdBy: "system",
+                        createdByName: "System",
+                        createdAt: serverTimestamp(),
+                        updatedAt: serverTimestamp()
+                    };
+                    
+                    await addDoc(collection(db, "tasks"), taskData);
+                    log(`Created task: ${task.title}`, 'success');
+                } catch (e) {
+                    log(`Failed to create task: ${e.message}`, 'error');
+                }
+            }
+            
+            log('🎉 Initialization complete!', 'success');
+            log('📝 Next: Deploy security rules and test login', 'info');
+            
+            btn.textContent = 'Done! ✓';
+            
+            setTimeout(() => {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success';
+                successDiv.innerHTML = '<strong>✅ Success!</strong><br>All users and tasks have been created. You can now:<br>1. Deploy Firestore security rules<br>2. Test login with each user<br>3. Verify the dashboard shows data';
+                document.querySelector('.container').appendChild(successDiv);
+            }, 500);
+        };
+    </script>
+</body>
+</html>

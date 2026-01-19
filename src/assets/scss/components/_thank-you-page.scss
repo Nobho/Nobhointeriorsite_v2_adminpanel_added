@@ -1,0 +1,16 @@
+// src/assets/scss/components/_thank-you-page.scss
+.thank-you-page {
+  padding: 6rem 0;
+  text-align: center;
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: $font-size-lg;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+}

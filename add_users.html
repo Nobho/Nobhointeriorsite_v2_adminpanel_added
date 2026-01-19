@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Team Members - QuestAdmin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #6366f1;
+            margin-top: 0;
+        }
+
+        .user-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .user-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        .field label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #5558e3;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        #log {
+            background: #1e1e2d;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>👥 Add Team Members to QuestAdmin</h1>
+
+        <div class="info">
+            <strong>📝 Instructions:</strong>
+            <ol>
+                <li>Make sure you're logged into QuestAdmin as <strong>admin</strong></li>
+                <li>Get each user's UID from Firebase Authentication</li>
+                <li>Fill in the UIDs below and click "Add All Users"</li>
+            </ol>
+        </div>
+
+        <div class="user-card">
+            <h3>Nusaiba Binte Mamun (Moderator)</h3>
+            <div class="field">
+                <label>Firebase Auth UID:</label>
+                <input type="text" id="uid_nusaiba" placeholder="Paste UID from Firebase Console">
+            </div>
+        </div>
+
+        <div class="user-card">
+            <h3>Abdullah Mubasshir (Employee)</h3>
+            <div class="field">
+                <label>Firebase Auth UID:</label>
+                <input type="text" id="uid_abdullah" placeholder="Paste UID from Firebase Console">
+            </div>
+        </div>
+
+        <div class="user-card">
+            <h3>Shariar Hasan (Employee)</h3>
+            <div class="field">
+                <label>Firebase Auth UID:</label>
+                <input type="text" id="uid_shariar" placeholder="Paste UID from Firebase Console">
+            </div>
+        </div>
+
+        <button onclick="addAllUsers()" id="addBtn">Add All Users</button>
+        <button onclick="addSampleTasks()" id="tasksBtn">Add Sample Tasks</button>
+
+        <div id="log"></div>
+        <div id="result"></div>
+    </div>
+
+    <script type="module">
+        import { getFirestore, doc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0M-ClYh7QuKRf2bauy_5QwFmGyNzv0rg",
+            authDomain: "nobhowebsite.firebaseapp.com",
+            projectId: "nobhowebsite",
+            storageBucket: "nobhowebsite.firebasestorage.app",
+            messagingSenderId: "46215837869",
+            appId: "1:46215837869:web:1b5840d3780d32f91aae24",
+            measurementId: "G-SMWW4ZS67N"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        function log(msg, type = 'info') {
+            const logDiv = document.getElementById('log');
+            logDiv.style.display = 'block';
+            const time = new Date().toLocaleTimeString();
+            const icon = type === 'error' ? '❌' : '✅';
+            logDiv.innerHTML += `[${time}] ${icon} ${msg}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function showResult(msg, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = type;
+            resultDiv.innerHTML = msg;
+        }
+
+        window.addAllUsers = async function () {
+            const btn = document.getElementById('addBtn');
+            btn.disabled = true;
+            btn.textContent = 'Adding...';
+
+            document.getElementById('log').innerHTML = '';
+            log('Starting user creation...', 'info');
+
+            const users = [
+                {
+                    uid: document.getElementById('uid_nusaiba').value.trim(),
+                    name: "Nusaiba Binte Mamun",
+                    email: "nusaiba.mamun20@gmail.com",
+                    role: "moderator",
+                    photoUrl: "/assets/images/team/Nusaiba.jpg",
+                    title: "Co-founder, Client Relations & Management",
+                    telegramId: "1617312734"
+                },
+                {
+                    uid: document.getElementById('uid_abdullah').value.trim(),
+                    name: "Abdullah Mubasshir",
+                    email: "abdullahmubasshir786@gmail.com",
+                    role: "employee",
+                    photoUrl: "/assets/images/team/Mubasshir.jpg",
+                    title: "Co-founder, Lead Designer",
+                    telegramId: "5243994015"
+                },
+                {
+                    uid: document.getElementById('uid_shariar').value.trim(),
+                    name: "Shariar Hasan",
+                    email: "shariarhassan2002@gmail.com",
+                    role: "employee",
+                    photoUrl: "/assets/images/team/Shariar.png",
+                    title: "Co-founder, Art Direction & Styling",
+                    telegramId: "1367897356"
+                }
+            ];
+
+            let successCount = 0;
+            let errorCount = 0;
+
+            for (const user of users) {
+                if (!user.uid || user.uid.length < 10) {
+                    log(`Skipped ${user.name} - UID not provided`, 'error');
+                    errorCount++;
+                    continue;
+                }
+
+                try {
+                    await setDoc(doc(db, "users", user.uid), {
+                        name: user.name,
+                        email: user.email,
+                        role: user.role,
+                        photoUrl: user.photoUrl,
+                        title: user.title,
+                        telegramId: user.telegramId,
+                        status: "active",
+                        createdAt: serverTimestamp(),
+                        lastActive: serverTimestamp()
+                    });
+                    log(`Added ${user.name} (${user.role})`, 'success');
+                    successCount++;
+                } catch (e) {
+                    log(`Failed to add ${user.name}: ${e.message}`, 'error');
+                    errorCount++;
+                }
+            }
+
+            btn.textContent = 'Done!';
+
+            if (errorCount === 0) {
+                showResult(`✅ Success! Added ${successCount} users. You can now login with their accounts.`, 'success');
+            } else {
+                showResult(`⚠️ Completed with ${errorCount} errors. Check the log above.`, 'error');
+            }
+        };
+
+        window.addSampleTasks = async function () {
+            const btn = document.getElementById('tasksBtn');
+            btn.disabled = true;
+            btn.textContent = 'Adding tasks...';
+
+            log('Creating sample tasks...', 'info');
+
+            // Get UIDs
+            const nusaibaUid = document.getElementById('uid_nusaiba').value.trim();
+            const abdullahUid = document.getElementById('uid_abdullah').value.trim();
+            const shariarUid = document.getElementById('uid_shariar').value.trim();
+            const azwadUid = "VZe8mdHhVbYQpZ1i32h0CaTPCmW2";
+
+            const now = new Date();
+            const tasks = [
+                {
+                    title: "Create 3D Rendering of Residential Building",
+                    description: "High-quality 3D visualization for the new residential project in Gulshan",
+                    assignedTo: azwadUid,
+                    assignedToName: "MD. Azwad Riyan",
+                    assignedToPhoto: "/assets/images/team/Riyan.jpg",
+                    status: "in_progress",
+                    priority: "high",
+                    deadline: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+                },
+                {
+                    title: "Client Meeting - Dhanmondi Apartment",
+                    description: "Initial consultation with client for interior design",
+                    assignedTo: nusaibaUid,
+                    assignedToName: "Nusaiba Binte Mamun",
+                    assignedToPhoto: "/assets/images/team/Nusaiba.jpg",
+                    status: "pending",
+                    priority: "medium",
+                    deadline: new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000)
+                },
+                {
+                    title: "Material Selection for Office Project",
+                    description: "Finalize flooring, wall finishes, and furniture",
+                    assignedTo: abdullahUid,
+                    assignedToName: "Abdullah Mubasshir",
+                    assignedToPhoto: "/assets/images/team/Mubasshir.jpg",
+                    status: "in_progress",
+                    priority: "high",
+                    deadline: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000)
+                },
+                {
+                    title: "Art Curation for Luxury Villa",
+                    description: "Select and arrange artwork for main living areas",
+                    assignedTo: shariarUid,
+                    assignedToName: "Shariar Hasan",
+                    assignedToPhoto: "/assets/images/team/Shariar.png",
+                    status: "pending",
+                    priority: "medium",
+                    deadline: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+                }
+            ];
+
+            let count = 0;
+            for (const task of tasks) {
+                if (!task.assignedTo || task.assignedTo.length < 10) {
+                    log(`Skipped task: ${task.title} - UID missing`, 'error');
+                    continue;
+                }
+
+                try {
+                    await addDoc(collection(db, "tasks"), {
+                        ...task,
+                        createdBy: azwadUid,
+                        createdByName: "MD. Azwad Riyan",
+                        createdAt: serverTimestamp(),
+                        updatedAt: serverTimestamp()
+                    });
+                    log(`Created: ${task.title}`, 'success');
+                    count++;
+                } catch (e) {
+                    log(`Failed: ${task.title} - ${e.message}`, 'error');
+                }
+            }
+
+            btn.textContent = 'Tasks Added!';
+            showResult(`✅ Created ${count} sample tasks!`, 'success');
+        };
+    </script>
+</body>
+
+</html>

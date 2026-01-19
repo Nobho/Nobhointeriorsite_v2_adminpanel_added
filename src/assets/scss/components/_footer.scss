@@ -1,0 +1,91 @@
+// src/assets/scss/components/_footer.scss
+
+.site-footer {
+  background-color: var(--color-bg-card); // Or $dm-bg for dark mode
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--color-border);
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr; // Single column on mobile
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+
+  // Switch to multi-column on tablet and larger
+  @media (min-width: 768px) {
+    // A flexible grid that can be 2 or 3 columns
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.footer-column--brand {
+  // On larger screens, this column can span more space if needed
+  @media (min-width: 1024px) {
+    grid-column: span 2;
+  }
+}
+
+.footer-logo img {
+  height: 30px;
+  margin-bottom: 1rem;
+}
+
+.footer-heading {
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-nav-list,
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    &:hover {
+      color: var(--color-link);
+      text-decoration: underline;
+    }
+  }
+}
+
+.footer-socials {
+  margin-top: 1.5rem;
+  // Add styles for SVG icons when you have them
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column; // Stack on mobile
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row; // Side-by-side on larger screens
+  }
+}
+
+.footer-legal-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}

@@ -1,0 +1,91 @@
+// src/assets/scss/components/_portfolio-page.scss
+
+.page-header {
+  padding: 4rem 0;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .page-intro {
+    font-size: $font-size-lg;
+    color: var(--color-text-muted);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+}
+
+.portfolio-main {
+  padding: 4rem 0;
+}
+
+.portfolio-filters {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: $border-radius * 0.5;
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-body);
+  }
+
+  select {
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: $border-radius * 0.5;
+    background-color: var(--color-bg);
+    color: var(--color-text-body);
+    font-family: inherit;
+    font-size: $font-size-base;
+    width: 100%; // Ensures it fills the flex item
+  }
+}
+
+.filter-actions {
+  .button-reset {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-link);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: $font-size-sm;
+
+    &:hover {
+      color: var(--color-link-hover);
+    }
+  }
+}
+
+// For screen reader users only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

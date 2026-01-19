@@ -1,0 +1,31 @@
+---
+layout: "base-layout.njk"
+pagination:
+  data: "legal_policies"
+  size: 1
+  alias: policy
+permalink: "/legal/{{ policy.slug }}/"
+# --- THE FIX IS HERE ---
+# We move 'title' and 'description' under 'eleventyComputed'
+# This tells Eleventy to process the variables instead of treating them as text.
+eleventyComputed:
+  title: "{{ policy.title }}"
+  description: "Legal Information for Nobho: {{ policy.title }}"
+---
+
+<article class="legal-page">
+    <header class="page-header">
+        <div class="container container--narrow">
+            {# We use the policy object directly here #}
+            <h1>{{ policy.title }}</h1>
+            <p class="page-intro">Last Updated: {{ policy.last_updated }}</p>
+        </div>
+    </header>
+
+    <div class="legal-content">
+        <div class="container container--narrow">
+            {# The 'safe' filter renders the HTML from your JSON file #}
+            {{ policy.content | safe }}
+        </div>
+    </div>
+</article>

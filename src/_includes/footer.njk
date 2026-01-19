@@ -1,0 +1,74 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column footer-column--brand">
+                <a href="/" class="footer-logo" aria-label="{{ site.name }} - Homepage">
+                     <!-- DEVELOPER MANDATE: Replace with a monochrome/footer version of your logo -->
+                    <img src="/assets/images/logo-footer-placeholder.svg" alt="{{ site.name }} Logo">
+                </a>
+                <p class="footer-tagline">Transforming Spaces, Inspiring Lives.</p>
+                <div class="footer-socials">
+                    {# This loop dynamically creates social links from site.json #}
+                    {%- for name, url in site.socials -%}
+                        <a href="{{ url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ name | capitalize }}">
+                            <!-- SVG icons will be placed here -->
+                            <span class="sr-only">{{ name | capitalize }}</span>
+                        </a>
+                    {%- endfor -%}
+                </div>
+            </div>
+
+            <div class="footer-column footer-column--links">
+                <h3 class="footer-heading">Navigate</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a href="/services">Services</a></li>
+		<li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/about">About Studio</a></li>
+                    <li><a href="/process">Our Process</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-column--contact">
+                <h3 class="footer-heading">Get in Touch</h3>
+                <ul class="footer-contact-list">
+                    <li>
+                        <address style="font-style: normal;">
+                            {{ site.contact.address.streetAddress }}<br>
+                            {{ site.contact.address.addressLocality }}, {{ site.contact.address.postalCode }}<br>
+                            {{ site.contact.address.addressCountry }}
+                        </address>
+                    </li>
+                    {# Dynamically pulls email from site.json #}
+                    <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+                    {# Dynamically pulls phone from site.json #}
+                    <li><a href="tel:{{ site.contact.phone }}">{{ site.contact.phone }}</a></li>
+                    <li>
+                        <!-- Calendly CTA from content brief -->
+                        <a href="#" class="footer-cta-link">Book a Free 20-min Design Call</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+	<div class="footer-currency">
+    <span style="font-size: 0.85rem; color: inherit; margin-right: 0.5rem;">Currency:</span>
+    <button class="currency-btn active" data-currency="BDT" style="background:none; border:none; color:inherit; cursor:pointer;">BDT</button>
+    <span style="opacity:0.5">|</span>
+    <button class="currency-btn" data-currency="USD" style="background:none; border:none; color:inherit; cursor:pointer;">USD</button>
+</div>
+            <p>&copy; {% year %} {{ site.name }}. All Rights Reserved.</p>
+            <nav class="footer-legal-nav" aria-label="Legal">
+                <ul>
+                    <li><a href="/legal/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/legal/terms-and-conditions">Terms & Conditions</a></li>
+                    <li><a href="/legal/credits">Credits</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+{# This is an Eleventy shortcode to get the current year. We'll configure this in .eleventy.js #}
+{# For now, it's a placeholder for the functionality. #}

@@ -1,0 +1,33 @@
+<header class="site-header">
+    <div class="container">
+        <a href="/" class="site-header__logo" aria-label="{{ site.name }} - Homepage">
+            <!-- DEVELOPER MANDATE: Replace with your actual SVG logo -->
+            <img src="/assets/images/logo-placeholder.svg" alt="{{ site.name }} Logo">
+        </a>
+
+        <nav class="site-header__nav" aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/services">Services</a></li>
+		<li><a href="/pricing">Pricing</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/process">Process</a></li>
+
+                <!-- Optional link for future growth -->
+                <!-- <li><a href="/shop">Shop</a></li> -->
+            </ul>
+        </nav>
+
+        <div class="site-header__actions">
+            <!-- As per content brief, this is the primary CTA -->
+            <a href="/contact" class="button button--primary">Contract us</a>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <!-- We will add JavaScript later to make this functional -->
+            <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menu">
+                <span class="sr-only">Menu</span>
+                <!-- Icons for hamburger/close can be added here via CSS or SVG -->
+            </button>
+        </div>
+    </div>
+</header>

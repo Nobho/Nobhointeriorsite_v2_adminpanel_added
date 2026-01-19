@@ -1,0 +1,7 @@
+node_modules
+_site
+.env
+.DS_Store
+src/assets/js/config.js
+!src/assets/js/config.11ty.js
+_secrets*

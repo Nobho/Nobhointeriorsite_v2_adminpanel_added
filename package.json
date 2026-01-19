@@ -1,0 +1,22 @@
+{
+  "name": "nobho-interior-design-website",
+  "version": "1.0.0",
+  "description": "World-class interior design platform for Nobho.",
+  "main": "index.js",
+  "scripts": {
+    "build:sass": "sass src/assets/scss:src/assets/css",
+    "watch:sass": "npm run build:sass -- --watch",
+    "serve:eleventy": "eleventy --serve",
+    "start": "npm-run-all --parallel watch:sass serve:eleventy",
+    "build": "npm run build:sass && eleventy"
+  },
+  "keywords": [],
+  "author": "Nobho",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.93.2"
+  }
+}

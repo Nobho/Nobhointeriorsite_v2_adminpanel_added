@@ -1,0 +1,71 @@
+---
+layout: "base-layout.njk"
+pagination:
+  data: "services_dummy"
+  size: 1
+  alias: service
+permalink: "/services/{{ service.slug }}/"
+eleventyComputed:
+  title: "{{ service.title }} | Nobho Interior Design Bangladesh"
+  description: "{{ service.meta_description }} - Professional {{ service.title }} services by NOBHO (নভো) in Rajshahi and throughout Bangladesh."
+schema_type: "Service"
+---
+<article class="service-detail">
+    <header class="page-header">
+        <div class="container">
+            <h1>{{ service.title }}</h1>
+            <p class="page-intro">{{ service.intro }}</p>
+        </div>
+    </header>
+
+    {% if service.imageLarge %}
+    <div class="service-hero-image">
+        <div class="container">
+            <img src="{{ service.imageLarge }}" alt="{{ service.title }} - Professional Interior Design by Nobho" class="service-cover-image">
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="service-content-wrapper">
+        <div class="container">
+            <div class="service-layout">
+                {# Main Content Area #}
+                <div class="service-main-content">
+                    <h2>What to Expect</h2>
+                    <p>{{ service.long_description }}</p>
+                    
+                    <h3>Our Process for {{ service.title }}</h3>
+                    <p>Our approach is collaborative and transparent. We begin with an in-depth consultation to understand your specific needs, followed by concept development, detailed design, and finally, flawless execution. We handle every detail to ensure the final space perfectly aligns with your vision.</p>
+                </div>
+
+                {# Sidebar with Key Information #}
+                <aside class="service-sidebar">
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-widget__title">Key Deliverables</h3>
+                        <ul class="deliverables-list">
+                            {% for item in service.deliverables %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-widget__title">Investment Guide</h3>
+                        <p class="investment-text">{{ service.investment }}</p>
+                        <p class="investment-note">For a personalized quote tailored to your project's scope, please schedule a consultation.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    {# ========================================================================= #}
+    {# TAILORED CALL TO ACTION #}
+    {# ========================================================================= #}
+    <section class="service-cta">
+        <div class="container container--narrow">
+            <h2 class="section-title">Ready to Start Your {{ service.title }} Project?</h2>
+            <p>Let's discuss how we can bring your vision to life. Schedule a complimentary 20-minute call with our design team today.</p>
+            <a href="/contact" class="button button--primary">Book a 20-min Call</a>
+        </div>
+    </section>
+</article>

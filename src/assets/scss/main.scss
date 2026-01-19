@@ -1,0 +1,29 @@
+// src/assets/scss/main.scss
+
+// 1. VARIABLES & MIXINS
+// Using @import makes all variables from this file globally available to the files below.
+@import 'variables';
+
+// 2. BASE STYLES
+// Now that variables are global, this file will compile correctly.
+@import 'base';
+
+// 3. COMPONENTS
+@import 'components/buttons';
+@import 'components/project-card';
+@import 'components/homepage';
+@import 'components/portfolio-page';
+@import 'components/project-detail-page';
+@import 'components/services-page';
+@import 'components/service-detail-page';
+@import 'components/about-page';
+@import 'components/process-page';
+@import 'components/contact-page';
+@import 'components/legal-page';
+@import 'components/thank-you-page';
+@import 'components/header';
+@import 'components/forms';
+@import 'components/footer';
+@import 'components/pricing-page'; 
+
+// 4. UTILITIES

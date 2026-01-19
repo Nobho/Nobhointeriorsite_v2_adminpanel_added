@@ -1,0 +1,98 @@
+// src/assets/scss/components/_service-detail-page.scss
+
+.service-content-wrapper {
+  padding: 4rem 0;
+}
+
+.service-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+
+  // Switch to two-column layout on larger screens
+  @media (min-width: 992px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.service-main-content {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.service-sidebar {
+  // Make the sidebar 'sticky' on large screens for a great UX
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+}
+
+.sidebar-widget {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: $border-radius;
+  padding: 1.5rem;
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.75rem;
+    margin: 0 0 1rem;
+  }
+}
+
+.deliverables-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-body);
+    
+    // Custom checkmark icon
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: $teal-accessible;
+      font-weight: bold;
+    }
+  }
+}
+
+.investment-text {
+  font-family: $font-family-serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.investment-note {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.service-cta {
+  background-color: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
+  padding: 5rem 0;
+  text-align: center;
+  
+  .section-title { margin-bottom: 1rem; }
+  p { max-width: 600px; margin: 0 auto 2rem; }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "privacy-policy",
+    "title": "Privacy Policy",
+    "last_updated": "October 28, 2023",
+    "content": "<h2>1. Introduction</h2><p>Nobho ('we', 'our', 'us') is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p><h2>2. Data Collection</h2><p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p><ul><li><strong>Personal Data:</strong> Personally identifiable information, such as your name, email address, and telephone number, that you voluntarily give to us when you fill out a contact form.</li><li><strong>Derivative Data:</strong> Information our servers automatically collect when you access the Site, such as your IP address, browser type, and pages you have viewed.</li></ul><h2>3. Use of Your Information</h2><p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Site to respond to your inquiries and provide you with our services.</p>"
+  },
+  {
+    "slug": "terms-and-conditions",
+    "title": "Terms and Conditions",
+    "last_updated": "October 28, 2023",
+    "content": "<h2>1. Agreement to Terms</h2><p>By using this website, you agree to be bound by these Terms and Conditions and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p><h2>2. Intellectual Property</h2><p>The content, organization, graphics, design, and other matters related to the Site are protected under applicable copyrights and other proprietary laws. The copying, redistribution, use or publication by you of any such matters or any part of the Site is strictly prohibited.</p><h2>3. Website Use</h2><p>You are granted a non-exclusive, non-transferable, revocable license to access and use the website strictly in accordance with these terms of use.</p>"
+  },
+  {
+    "slug": "credits",
+    "title": "Credits and Disclosures",
+    "last_updated": "October 28, 2023",
+    "content": "<h2>1. Website Development</h2><p>This website was designed and developed in collaboration with our internal team and expert partners, utilizing a modern, performance-focused technology stack.</p><h2>2. Photography & Visualization</h2><p>All project photography and 3D visualizations are the work of Nobho's talented team and our trusted photography partners. All images are copyrighted and may not be used without express written permission.</p><h2>3. Testimonial & Photo Release Note</h2><p>Clients who provide testimonials or agree to have their projects photographed for our portfolio grant Nobho a worldwide, perpetual, non-exclusive, royalty-free license to use, reproduce, and display such content on our website, social media channels, and in other marketing materials. We are deeply grateful to our clients for allowing us to share the beautiful spaces we create together.</p>"
+  }
+]

@@ -1,0 +1,107 @@
+---
+layout: "base-layout.njk"
+title: "About NOBHO (নভো) | Top Interior Designers in Bangladesh"
+description: "Meet the team at NOBHO (নভো/Nobho). We are a collective of passionate interior architects and designers in Rajshahi, dedicating our expertise to transforming spaces across Bangladesh."
+---
+
+<header class="page-header">
+    <div class="container">
+        <h1>{{ title }}</h1>
+    </div>
+</header>
+
+<section class="brand-story-section">
+    <div class="container">
+        <div class="story-layout">
+            <div class="story-narrative">
+                <h2>Our Story</h2>
+                <p>Nobho was founded by four partners united by a shared passion for transformative design. We believe that a well-designed space has the power to enhance daily life, and we bring a blend of architectural precision, artistic vision, and technological innovation to every project. Our studio was born from the desire to create a collaborative, client-focused firm that values both the big picture and the minute details.</p>
+            </div>
+            <div class="story-philosophy">
+                <div class="philosophy-item">
+                    <h3>Mission</h3>
+                    <p>{{ team.mission_statement }}</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>Vision</h3>
+                    <p>{{ team.vision_statement }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="container">
+        <h2 class="section-title">Meet the Founders</h2>
+        <div class="team-grid">
+            {# The 'sort' filter sorts the array of members by the 'name' property #}
+            {% for member in team.members | sort(false, false, 'name') %}
+            <div class="team-card">
+                <div class="team-card__image-wrapper">
+                    <img src="{{ member.photo }}" alt="Portrait of {{ member.name }}" loading="lazy" width="400" height="400">
+                </div>
+                <div class="team-card__content">
+                    <h3 class="team-card__name">{{ member.name }}</h3>
+                    <p class="team-card__role">{{ member.role }}</p>
+                    <blockquote class="team-card__quote">
+                        <p>"{{ member.quote }}"</p>
+                    </blockquote>
+                    <p class="team-card__bio">{{ member.bio }}</p>
+                    <div class="team-card__socials">
+                        {% if member.socials.linkedin %}
+                            <a href="{{ member.socials.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="{{ member.name }} on LinkedIn">
+                                <!-- Placeholder for SVG Icon -->
+                                LinkedIn
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="faq-section">
+    <div class="container container--narrow">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        {# Loop through the categories in our JSON file #}
+        {% for group in faq %}
+        <div class="faq-category">
+            <h3 class="faq-category__title">{{ group.category }}</h3>
+            <div class="faq-accordion">
+                {# Loop through the specific questions in this category #}
+                {% for item in group.items %}
+                <details>
+                    <summary>{{ item.question }}</summary>
+                    <p>{{ item.answer }}</p>
+                </details>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+</section>
+{# Add this at the bottom of about/index.njk #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}",
+  "member": [
+    {% for member in team.members %}
+    {
+      "@type": "Person",
+      "name": "{{ member.name }}",
+      "jobTitle": "{{ member.role }}",
+      "image": "{{ site.url }}{{ member.photo }}",
+      "sameAs": "{{ member.socials.linkedin }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>

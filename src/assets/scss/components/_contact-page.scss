@@ -1,0 +1,137 @@
+// src/assets/scss/components/_contact-page.scss
+
+.contact-main {
+  padding: 4rem 0;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+
+  @media (min-width: 992px) {
+    // A 3/2 split for the form and sidebar
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.contact-form-wrapper h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  
+  &--full {
+    grid-column: 1 / -1; // Span the full width of the grid
+  }
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+// Common styles for all input types
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: $border-radius * 0.5;
+  background-color: var(--color-bg-card);
+  color: var(--color-text-body);
+  font-family: inherit;
+  font-size: $font-size-base;
+  transition: border-color $transition-speed, box-shadow $transition-speed;
+
+  &:focus {
+    outline: none;
+    border-color: $teal-accessible;
+    box-shadow: 0 0 0 3px rgba($teal-accessible, 0.2);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-consent {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  margin: 1.5rem 0;
+}
+
+.form-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: $border-radius *0.5;
+  background-color: rgba($teal-accessible, 0.1);
+  border: 1px solid rgba($teal-accessible, 0.3);
+  color: var(--color-text-body);
+}
+
+// Sidebar Styles
+.contact-details {
+  &__block {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: $border-radius;
+    padding: 2rem;
+    &:not(:last-child) { margin-bottom: 2rem; }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin: 0 0 1.5rem;
+  }
+}
+
+.contact-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 1rem;
+    a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
+
+.contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  
+  a {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: $font-size-sm;
+  }
+}
+
+// Add this to _contact-page.scss
+.hidden-honeypot {
+  display: none;
+}

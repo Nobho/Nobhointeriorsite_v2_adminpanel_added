@@ -1,0 +1,59 @@
+// src/assets/scss/_variables.scss
+
+// =========================================================================
+// BRAND COLOR PALETTE (Ref: Color Section)
+// =========================================================================
+// Brand anchors
+$navy: #163A64;
+$teal: #00C9BC;
+
+// Text colors (Light Mode)
+$text-body: #3C4A5A;
+$text-muted: #6B7A8C;
+
+// UI & State Colors
+$teal-accessible: #007A73; // For text on light backgrounds
+$disabled: #C7D4E1;
+$white: #FFFFFF;
+$black: #0F1A28; // Using dark mode bg as pure black
+
+// Backgrounds & Borders (Light Mode)
+$bg-light: #FAFAFA;
+$bg-cards: #FFFFFF;
+$border-light: #E5E7EB;
+
+// Dark Mode Palette
+$dm-bg: #0F1A28;
+$dm-cards: #1A2837;
+$dm-text-headings: #FFFFFF;
+$dm-text-body: #E0E0E0;
+$dm-text-muted: #788796;
+$dm-border: #2A3A4D;
+
+// Hover/Active States
+$teal-hover: #00A7A1;
+$teal-active: #007A73;
+$navy-hover: #2B4E78;
+$teal-dark-hover: #00E3D1;
+
+// =========================================================================
+// TYPOGRAPHY
+// =========================================================================
+// Using system fonts for performance, but you can easily swap these.
+$font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-serif: "Georgia", "Times New Roman", serif; // For potential heading use
+
+// Font sizes (using a fluid scale is recommended, but starting with fixed)
+$font-size-base: 1rem; // ~16px
+$font-size-sm: 0.875rem; // ~14px
+$font-size-lg: 1.25rem; // ~20px
+
+// =========================================================================
+// LAYOUT & UI
+// =========================================================================
+$container-max-width: 1200px;
+$container-padding: 1.5rem;
+
+$border-radius: 8px;
+$transition-speed: 0.2s ease-in-out;
+$soft-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);

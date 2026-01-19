@@ -1,0 +1,99 @@
+// src/assets/scss/base.scss
+
+// =========================================================================
+// ROOT & THEME DEFINITIONS
+// =========================================================================
+// We use CSS Custom Properties (variables) for dynamic theming (light/dark mode).
+// This is the most modern and efficient way to handle it.
+:root {
+  // Light Mode Defaults
+  --color-bg: #{$bg-light};
+  --color-bg-card: #{$bg-cards};
+  --color-text-heading: #{$navy};
+  --color-text-body: #{$text-body};
+  --color-text-muted: #{$text-muted};
+  --color-border: #{$border-light};
+  --color-link: #{$teal-accessible};
+  --color-link-hover: #{$teal};
+  --color-focus-ring: #{$teal-accessible};
+}
+
+// Automatic Dark Mode based on user's OS preference
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #{$dm-bg};
+    --color-bg-card: #{$dm-cards};
+    --color-text-heading: #{$dm-text-headings};
+    --color-text-body: #{$dm-text-body};
+    --color-text-muted: #{$dm-text-muted};
+    --color-border: #{$dm-border};
+    --color-link: #{$teal};
+    --color-link-hover: #{$teal-dark-hover};
+    --color-focus-ring: #{$teal};
+  }
+}
+
+// =========================================================================
+// GLOBAL STYLES
+// =========================================================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// =========================================================================
+// TYPOGRAPHY & LINKS
+// =========================================================================
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem;
+  font-family: $font-family-serif; // Using serif for headings for a classic feel
+  color: var(--color-text-heading);
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 1.5rem;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color $transition-speed;
+
+  &:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline; // Mandated link hover style
+  }
+}
+
+// =========================================================================
+// ACCESSIBILITY & LAYOUT
+// =========================================================================
+// Modern focus ring for accessibility: only shows for keyboard users.
+:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+// A reusable container class to center content
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}

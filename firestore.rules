@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // --- Helper Functions ---
+    
+    // Check if user is authenticated
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Get user role from users collection
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    
+    // Check specific roles
+    function hasRole(role) {
+      return isSignedIn() && getUserRole() == role;
+    }
+    
+    function isAdmin() {
+      return hasRole('admin');
+    }
+    
+    function isModerator() {
+      return isSignedIn() && (getUserRole() == 'admin' || getUserRole() == 'moderator');
+    }
+
+    // --- 1. Tasks Collection ---
+    match /tasks/{taskId} {
+      // READ: Admin/Mods see all. Users see assigned.
+      allow read: if isSignedIn() && (
+        isAdmin() || 
+        isModerator() || 
+        resource.data.assignedTo == request.auth.uid
+      );
+      
+      // CREATE: Only Admin/Mods
+      allow create: if isModerator();
+      
+      // UPDATE: Detailed Logic
+      // - Admin/Mod: Update anything
+      // - Employee: Can ONLY update status/comments if task is assigned to them
+      // - Cannot reassign, cannot change title/desc/priority
+      allow update: if isSignedIn() && (
+        isModerator() ||
+        (resource.data.assignedTo == request.auth.uid && 
+         request.resource.data.assignedTo == resource.data.assignedTo && 
+         request.resource.data.title == resource.data.title &&
+         request.resource.data.description == resource.data.description &&
+         request.resource.data.priority == resource.data.priority &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'comments', 'updatedAt']))
+      );
+      allow read: if isSignedIn();
+      allow create: if isAdmin() || isModerator();
+      // Allow admins, moderators, OR the assigned user to update the task
+      allow update: if isAdmin() || isModerator() || request.auth.uid == resource.data.assignedTo || request.auth.uid == resource.data.createdBy;
+      allow delete: if isAdmin();
+    }
+    
+    // --- 2. Users Collection ---
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow update: if isSignedIn() && request.auth.uid == userId;
+      allow create, delete: if isAdmin();
+    }
+    
+    // --- 3. Activity Feed (Public Team Feed) ---
+    // Replaces 'activity_feed' and 'activityLogs' logic
+    match /activity_feed/{feedId} {
+      allow read: if isSignedIn(); // Everyone authenticated can read
+      allow create: if isSignedIn(); // System/Users create logs
+      allow update, delete: if false; // Audit trail is immutable
+    }
+    
+    // --- 4. System Audit (Ultimate Mode - Admin Only) ---
+    match /system_audit/{logId} {
+      allow read: if isAdmin(); // STRICT: Only admins
+      allow create: if isSignedIn(); // Users trigger system logs (e.g. login)
+      allow update, delete: if false; // Audit trail is immutable
+    }
+    
+    // --- 5. Notifications ---
+    match /notifications/{notificationId} {
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn();
+      allow update, delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+    
+    // --- 6. Task History Sub-collection ---
+    match /tasks/{taskId}/history/{historyId} {
+       allow read: if isModerator() || get(/databases/$(database)/documents/tasks/$(taskId)).data.assignedTo == request.auth.uid;
+       allow write: if true; 
+    }
+  }
+}

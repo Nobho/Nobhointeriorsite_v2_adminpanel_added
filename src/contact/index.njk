@@ -1,0 +1,116 @@
+---
+layout: "base-layout.njk"
+title: "Contact Us: Let's Create Something Beautiful Together"
+description: "Ready to start your interior design project? Fill out our inquiry form to schedule a consultation. We're excited to hear about your project."
+---
+
+<header class="page-header">
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p class="page-intro">We're excited to hear about your project! Please fill out the form below, and our team will get back to you shortly.</p>
+    </div>
+</header>
+
+<section class="contact-main">
+    <div class="container">
+        <div class="contact-layout">
+            <div class="contact-form-wrapper">
+                <h2>Project Inquiry</h2>
+                
+                <!-- 
+                  NETLIFY FORM CHANGES:
+                  1. `name="project-inquiry"`: Identifies the form in the Netlify UI.
+                  2. `data-netlify="true"`: This is the main attribute that tells Netlify to handle this form.
+                  3. `data-netlify-honeypot="bot-field"`: Enables an anti-spam technique.
+                  4. `data-netlify-recaptcha="true"`: Tells Netlify to add its reCAPTCHA v2 challenge.
+                  5. `action="/thank-you"`: Redirects the user to a success page after submission.
+                -->
+                <form name="project-inquiry" class="contact-form" method="POST" netlify data-netlify-honeypot="bot-field" action="/thank-you/">
+                    
+                    <!-- NETLIFY HONEYPOT FIELD: This field is hidden from users. 
+                         If a bot fills it out, Netlify will reject the submission. -->
+                    <p class="hidden-honeypot">
+                      <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+                    </p>
+
+                    <div class="form-grid">
+                        <div class="form-group form-group--full">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone (Optional)</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">Project Type</label>
+                            <select id="project-type" name="project_type" required>
+                                <option value="" disabled selected>Select a type...</option>
+                                <option value="Residential">Residential</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-location">Project Location</label>
+                            <input type="text" id="project-location" name="project_location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date">Desired Start Date (Optional)</label>
+                            <input type="date" id="start-date" name="start_date">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Ideal Timeline (Optional)</label>
+                            <select id="timeline" name="timeline">
+                                <option value="" disabled selected>Select a timeline...</option>
+                                <option value="<3 Months">&lt; 3 Months</option>
+                                <option value="3-6 Months">3-6 Months</option>
+                                <option value="6+ Months">6+ Months</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-group--full">
+                            <label for="project-details">Tell us about your project</label>
+                            <textarea id="project-details" name="project_details" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- NETLIFY RECAPTCHA: Netlify will automatically inject the "I'm not a robot"
+                         checkbox widget in this div when you enable it in your site settings. -->
+                    <!-- Recaptcha removed to simplify minimal setup -->
+
+                    <p class="form-consent">By submitting, you agree to our <a href="/legal/privacy-policy">Privacy Policy</a>.</p>
+
+                    <button type="submit" class="button button--primary">Send Inquiry</button>
+                </form>
+            </div>
+
+            <aside class="contact-details">
+                <!-- The rest of the sidebar content remains the same -->
+                <div class="contact-details__block">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info-list">
+                        <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+                        <li><a href="tel:{{ site.contact.phone }}">{{ site.contact.phone }}</a></li>
+                    </ul>
+                </div>
+                <div class="contact-details__block">
+                    <h3>Follow Us</h3>
+                    <div class="contact-socials">
+                        {% for name, url in site.socials %}
+                            <a href="{{ url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ name | capitalize }}">{{ name | capitalize }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="contact-details__block">
+                    <h3>Have a quick question?</h3>
+                    <p>For press, collaborations, or general questions, feel free to send us a message.</p>
+                    <a href="mailto:{{ site.contact.email }}" class="button button--secondary">Send a Message</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>

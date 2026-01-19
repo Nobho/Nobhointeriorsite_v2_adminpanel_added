@@ -1,0 +1,23 @@
+// src/assets/scss/components/_service-cover.scss
+
+.service-hero-image {
+    width: 100%;
+    margin-bottom: 3rem;
+    padding: 0;
+
+    .container {
+        padding: 0;
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+.service-cover-image {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+    max-height: 700px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}

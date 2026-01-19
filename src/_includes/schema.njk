@@ -1,0 +1,112 @@
+{# src/_includes/schema.njk #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  {% if schema_type == 'Organization' or schema_type == 'LocalBusiness' or schema_type == 'ProfessionalService' %}
+  "@type": ["InteriorDesignFirm", "ProfessionalService", "LocalBusiness"],
+  "name": "{{ site.name }}",
+  "legalName": "{{ site.legalName }}",
+  "alternateName": {{ site.alternateNames | dump | safe }},
+  "url": "{{ site.url }}",
+  "logo": "{{ site.url }}/assets/images/logo.svg",
+  "image": "{{ site.url }}/assets/images/logo.svg",
+  "description": "{{ site.description }}",
+  "foundingDate": "{{ site.foundedDate }}",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ site.contact.address.streetAddress }}",
+    "addressLocality": "{{ site.contact.address.addressLocality }}",
+    "addressRegion": "{{ site.contact.address.addressRegion }}",
+    "postalCode": "{{ site.contact.address.postalCode }}",
+    "addressCountry": "{{ site.contact.address.addressCountry }}"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "{{ site.contact.geo.latitude }}",
+    "longitude": "{{ site.contact.geo.longitude }}"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Bangladesh"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "{{ site.contact.phone }}",
+    "contactType": "Customer Service",
+    "areaServed": "BD",
+    "availableLanguage": ["en", "bn"]
+  },
+  "sameAs": [
+    "{{ site.socials.instagram }}",
+    "{{ site.socials.linkedin }}",
+    "{{ site.socials.facebook }}",
+    "{{ site.socials.youtube }}",
+    "{{ site.socials.tiktok }}"
+  ]
+  {% elseif schema_type == 'Service' %}
+  "@type": "Service",
+  "name": "{{ title }}",
+  "description": "{{ description }}",
+  "provider": {
+    "@type": "InteriorDesignFirm",
+    "name": "{{ site.name }}",
+    "alternateName": "নভো ইন্টেরিয়র",
+    "url": "{{ site.url }}",
+    "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BD",
+        "addressLocality": "Rajshahi"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Bangladesh"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Interior Design Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Residential Interior Design"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Commercial Interior Design"
+        }
+      }
+    ]
+  }
+  {% elseif schema_type == 'CreativeWork' %}
+  "@type": ["CreativeWork", "VisualArtwork"],
+  "name": "{{ title }}",
+  "headline": "{{ title }}",
+  "description": "{{ description }}",
+  "genre": "Interior Design",
+  "creator": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "alternateName": "Nobho Interior"
+  },
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Bangladesh"
+  }
+  {% else %}
+  "@type": "WebPage",
+  "name": "{{ title }}",
+  "description": "{{ description }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "alternateName": "নভো"
+  }
+  {% endif %}
+}
+</script>

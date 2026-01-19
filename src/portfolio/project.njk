@@ -1,0 +1,132 @@
+---
+layout: "base-layout.njk"
+pagination:
+  data: "projects_dummy"
+  size: 1
+  alias: project
+permalink: "/portfolio/{{ project.slug }}/"
+eleventyComputed:
+  title: "{{ project.title }} | Interior Design by Nobho Bangladesh"
+  description: "View the {{ project.title }} project by NOBHO (নভো). {{ project.category }} interior design in {{ project.location }}. Call us for world-class interior architecture."
+schema_type: "CreativeWork"
+---
+{# ========================================================================= #}
+{# PROJECT HEADER & HERO IMAGE #}
+{# ========================================================================= #}
+<article class="project-detail">
+    <header class="project-header">
+        <div class="container">
+            <h1 class="project-title">{{ project.title }}</h1>
+            <p class="project-meta">
+                <span><strong>Category:</strong> {{ project.category }}</span> | 
+                <span><strong>Location:</strong> {{ project.location }}</span>
+            </p>
+        </div>
+    </header>
+
+    <figure class="project-hero-image">
+        <img src="{{ project.hero_image.url }}" alt="{{ project.hero_image.alt }} - Interior Design by Nobho" width="1920" height="1080">
+    </figure>
+
+    {# ========================================================================= #}
+    {# PROJECT NARRATIVE: CHALLENGE -> SOLUTION -> OUTCOME #}
+    {# ========================================================================= #}
+    <section class="project-narrative">
+        <div class="container container--narrow">
+            <div class="narrative-grid">
+                <div class="narrative-item">
+                    <h2>The Challenge</h2>
+                    <p>{{ project.challenge }}</p>
+                </div>
+                <div class="narrative-item">
+                    <h2>The Insight</h2>
+                    <p>{{ project.insight }}</p>
+                </div>
+                <div class="narrative-item">
+                    <h2>The Solution</h2>
+                    <p>{{ project.solution }}</p>
+                </div>
+                <div class="narrative-item narrative-item--outcome">
+                    <h3>Outcome</h3>
+                    <div class="outcome-stats">
+                        <div class="stat">
+                            <strong>{{ project.outcome.stat1.value }}</strong>
+                            <span>{{ project.outcome.stat1.label }}</span>
+                        </div>
+                        <div class="stat">
+                            <strong>{{ project.outcome.stat2.value }}</strong>
+                            <span>{{ project.outcome.stat2.label }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ========================================================================= #}
+    {# KEY PHOTOS GALLERY #}
+    {# ========================================================================= #}
+    <section class="project-gallery">
+        <div class="container">
+            {% for image in project.gallery %}
+            <figure class="gallery-item">
+                <img src="{{ image.url }}" alt="{{ image.alt }} - Nobho Projects" loading="lazy" width="1200" height="800">
+                <figcaption>{{ image.caption }}</figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# ========================================================================= #}
+    {# PROJECT DETAILS: CREDITS & MATERIALS #}
+    {# ========================================================================= #}
+    <section class="project-details">
+        <div class="container container--narrow">
+            <div class="details-grid">
+                <div class="details-column">
+                    <h3>Credits</h3>
+                    <ul class="details-list">
+                        {% for credit in project.credits %}
+                        <li><strong>{{ credit.role }}:</strong> {{ credit.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="details-column">
+                    <h3>Key Materials</h3>
+                    <ul class="details-list">
+                        {% for material in project.materials %}
+                        <li>{{ material }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ========================================================================= #}
+    {# (OPTIONAL) CLIENT TESTIMONIAL #}
+    {# ========================================================================= #}
+    {% if project.testimonial %}
+    <section class="project-testimonial">
+        <div class="container container--narrow">
+            <blockquote class="testimonial-quote">
+                <p>"{{ project.testimonial.quote }}"</p>
+                <footer><cite>— {{ project.testimonial.cite }}</cite></footer>
+            </blockquote>
+        </div>
+    </section>
+    {% endif %}
+
+    {# ========================================================================= #}
+    {# NAVIGATION: BACK TO PORTFOLIO #}
+    {# ========================================================================= #}
+    <nav class="project-navigation" aria-label="Project Navigation">
+        <div class="container" style="text-align: center; margin-top: 3rem; margin-bottom: 2rem;">
+            <a href="/portfolio" class="button button--secondary">View All Projects</a>
+        </div>
+    </nav>
+</article>
+
+{# ========================================================================= #}
+{# (OPTIONAL) RELATED PROJECTS - We'll add this later for simplicity #}
+{# ========================================================================= #}

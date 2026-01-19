@@ -1,0 +1,90 @@
+---
+layout: "base-layout.njk"
+title: "Nobho Interior Design | Best Interior Firm in Rajshahi, Bangladesh"
+description: "NOBHO (নভো) is the leading interior design firm in Rajshahi, Bangladesh. We provide world-class residential and commercial interior solutions, 3D rendering, and architectural design."
+schema_type: "ProfessionalService"
+---
+
+{# ========================================================================= #}
+{# HERO SECTION (Ref: Content Section - Homepage) #}
+{# ========================================================================= #}
+<section class="hero">
+    <div class="container">
+        <h1 class="hero__headline">Transforming Spaces, Inspiring Lives.</h1>
+        <p class="hero__subheadline">We blend architecture-grade detailing with warm, lived-in aesthetics to craft spaces that work beautifully every day.</p>
+        {# Note: The primary "Contract us" CTA is in the global header. #}
+        {# We will add a secondary CTA here to view the portfolio. #}
+        <a href="/portfolio" class="button button--secondary">View Our Portfolio</a>
+    </div>
+</section>
+
+{# ========================================================================= #}
+{# FEATURED PROJECTS SECTION #}
+{# ========================================================================= #}
+<section class="featured-projects">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-grid">
+            {# Project Card 1 #}
+            <a href="/portfolio/luxury-apartment-renovation" class="project-card">
+                <div class="project-card__image-wrapper">
+                    {# MANDATE FULFILLED (Section 1): lazy loading, explicit width/height to prevent CLS #}
+
+                </div>
+                <div class="project-card__content">
+                    <h3 class="project-card__title">Luxury Apartment Renovation</h3>
+                    <p class="project-card__descriptor">New York</p>
+                </div>
+            </a>
+            
+            {# Project Card 2 #}
+            <a href="/portfolio/modern-commercial-office" class="project-card">
+                <div class="project-card__image-wrapper">
+                    <img src="/assets/images/placeholder-project-2.jpg" alt="A modern and bright commercial office space with glass walls." loading="lazy" width="800" height="600">
+                </div>
+                <div class="project-card__content">
+                    <h3 class="project-card__title">Modern Commercial Office</h3>
+                    <p class="project-card__descriptor">London</p>
+                </div>
+            </a>
+            
+            {# Project Card 3 #}
+            <a href="/portfolio/minimalist-hospitality-lounge" class="project-card">
+                <div class="project-card__image-wrapper">
+                    <img src="/assets/images/placeholder-project-3.jpg" alt="A minimalist hotel lounge with Scandinavian furniture." loading="lazy" width="800" height="600">
+                </div>
+                <div class="project-card__content">
+                    <h3 class="project-card__title">Minimalist Hospitality Lounge</h3>
+                    <p class="project-card__descriptor">Dubai</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# ========================================================================= #}
+{# TESTIMONIAL SNIPPET SECTION #}
+{# ========================================================================= #}
+<section class="testimonial-snippet">
+    <div class="container">
+        <blockquote class="testimonial-quote">
+            <p>"The attention to detail was simply breathtaking. Nobho didn't just design a house; they crafted our home."</p>
+            <footer>
+                <cite>— Jane & John Doe, Residential Project, Manhattan</cite>
+            </footer>
+        </blockquote>
+    </div>
+</section>
+
+{# ========================================================================= #}
+{# CONTACT PROMPT / CALENDLY SECTION #}
+{# ========================================================================= #}
+<section class="cta-contact">
+    <div class="container">
+        <h2 class="section-title">Book a Free 20-min Design Call</h2>
+<!-- Calendly inline widget begin -->
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/nobho?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=98b192&primary_color=ffffff" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+</section>
