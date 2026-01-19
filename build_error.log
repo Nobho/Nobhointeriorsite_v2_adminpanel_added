@@ -1,0 +1,120 @@
+
+> nobho-interior-design-website@1.0.0 build
+> npm run build:sass && eleventy
+
+
+> nobho-interior-design-website@1.0.0 build:sass
+> sass src/assets/scss:src/assets/css
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+     ╷
+1412 │ @import 'mobile';
+     │         ^^^^^^^^
+     ╵
+    src\assets\scss\cuteadmin.scss 1412:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+     ╷
+1413 │ @import 'temp_append';
+     │         ^^^^^^^^^^^^^
+     ╵
+    src\assets\scss\cuteadmin.scss 1413:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+255 │ @import 'mobile';
+    │         ^^^^^^^^
+    ╵
+    src\assets\scss\temp_append.scss 255:9  @import
+    src\assets\scss\cuteadmin.scss 1413:9   root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+5 │ @import 'variables';
+  │         ^^^^^^^^^^^
+  ╵
+    src\assets\scss\main.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+9 │ @import 'base';
+  │         ^^^^^^
+  ╵
+    src\assets\scss\main.scss 9:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+12 │ @import 'components/buttons';
+   │         ^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src\assets\scss\main.scss 12:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+13 │ @import 'components/project-card';
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src\assets\scss\main.scss 13:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+14 │ @import 'components/homepage';
+   │         ^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src\assets\scss\main.scss 14:9  root stylesheet
+
+WARNING: 13 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+255 │ @import 'mobile';
+    │         ^^^^^^^^
+    ╵
+    src\assets\scss\temp_append.scss 255:9  root stylesheet
+
+[11ty] Problem writing Eleventy templates: (more in DEBUG output)
+[11ty] Invalid left-hand side expression in prefix operation (via SyntaxError)
+[11ty] 
+[11ty] Original error stack trace: E:\Nobho\nobho-interior-design-website\src\assets\js\config.11ty.js:1
+[11ty] ---
+[11ty] 
+[11ty] SyntaxError: Invalid left-hand side expression in prefix operation
+[11ty]     at wrapSafe (node:internal/modules/cjs/loader:1620:18)
+[11ty]     at Module._compile (node:internal/modules/cjs/loader:1662:20)
+[11ty]     at Object..js (node:internal/modules/cjs/loader:1820:10)
+[11ty]     at Module.load (node:internal/modules/cjs/loader:1423:32)
+[11ty]     at Function._load (node:internal/modules/cjs/loader:1246:12)
+[11ty]     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+[11ty]     at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+[11ty]     at Module.require (node:internal/modules/cjs/loader:1445:12)
+[11ty]     at require (node:internal/modules/helpers:135:16)
+[11ty]     at JavaScript.getInstanceFromInputPath (E:\Nobho\nobho-interior-design-website\node_modules\@11ty\eleventy\src\Engines\JavaScript.js:74:17)
+[11ty] Copied 26 files / Wrote 0 files in 0.11 seconds (v2.0.1)
