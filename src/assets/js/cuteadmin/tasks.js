@@ -32,6 +32,12 @@ export async function createTask(taskData) {
                 priority: baseData.priority || 'medium',
                 deadline: baseData.deadline || new Date(),
                 referenceLinks: baseData.referenceLinks || [],
+                // Customer & Project linking (from IMS)
+                customerId: baseData.customerId || null,
+                customerName: baseData.customerName || "",
+                projectId: baseData.projectId || null,
+                projectName: baseData.projectName || "",
+                // Assignee info
                 assignedTo: assignee.uid,
                 assignedToName: assignee.name || "Unknown User",
                 assignedToPhoto: assignee.photo || "",
@@ -80,7 +86,7 @@ export async function createTask(taskData) {
 }
 
 // Update task
-export async function updateTask(taskId, updates) {
+export async function updateTask(taskId, updates, silent = false) {
     try {
         const taskRef = doc(db, "tasks", taskId);
         const taskSnap = await getDoc(taskRef);
@@ -135,6 +141,15 @@ export async function updateTask(taskId, updates) {
             logDetails = `Updated task "${oldData.title}"`;
         }
 
+        if (silent) {
+            // For "Ultimate Hand" updates, we log to system audit but skip public feed and notifications
+            // We can dynamically import to avoid circular dep issues if any, though logSystemAction is in db.js
+            const { logSystemAction } = await import('./db.js');
+            await logSystemAction('ultimate_update', logDetails, { taskId });
+            console.log('[Tasks] Silent update performed. Notifications suppressed.');
+            return;
+        }
+
         await logAction(
             window.CuteState.user.uid,
             "task_updated",
@@ -152,22 +167,44 @@ export async function updateTask(taskId, updates) {
             });
         }
 
-        // If completed, notify task creator (if different from completer)
-        if (updates.status === 'done' && oldData.status !== 'done' && oldData.createdBy !== window.CuteState.user.uid) {
-            await createNotification(oldData.createdBy, {
-                type: 'task_completed',
-                taskId: taskId,
-                taskTitle: oldData.title,
-                message: `${oldData.assignedToName} completed task: ${oldData.title}`
-            });
+        // If completed, send Telegram notification ALWAYS
+        if (updates.status === 'done' && oldData.status !== 'done') {
+            // Prepare task data for webhook with serializable timestamps
+            const now = new Date();
+            const completedTask = {
+                ...oldData,
+                ...updates,
+                id: taskId,
+                // Convert Firestore Timestamps to ISO strings for serialization
+                createdAt: oldData.createdAt?.toDate ? oldData.createdAt.toDate().toISOString() : (oldData.createdAt || now.toISOString()),
+                completedAt: now.toISOString(), // Use actual current time instead of serverTimestamp
+                completedBy: window.CuteState.user.uid,
+                // Convert deadline to serializable format if it exists
+                deadline: oldData.deadline?.toDate ? oldData.deadline.toDate().toISOString() : oldData.deadline
+            };
 
-            // Trigger Telegram Notification (Completion)
-            // We verify it's actually done
-            const completedTask = { ...oldData, ...updates, id: taskId };
+            console.log('[Tasks] Sending task_completed notification with data:', completedTask);
             sendTaskNotification(completedTask, 'task_completed');
-        } else {
+
+            // Also notify task creator via in-app notification (only if different from completer)
+            if (oldData.createdBy !== window.CuteState.user.uid) {
+                await createNotification(oldData.createdBy, {
+                    type: 'task_completed',
+                    taskId: taskId,
+                    taskTitle: oldData.title,
+                    message: `${oldData.assignedToName} completed task: ${oldData.title}`
+                });
+            }
+        } else if (updates.status && updates.status !== 'done') {
             // For any other update (in_progress, edit title, etc.), sync to Sheet
-            const updatedTask = { ...oldData, ...updates, id: taskId };
+            const updatedTask = {
+                ...oldData,
+                ...updates,
+                id: taskId,
+                // Convert timestamps for serialization
+                createdAt: oldData.createdAt?.toDate ? oldData.createdAt.toDate().toISOString() : oldData.createdAt,
+                deadline: oldData.deadline?.toDate ? oldData.deadline.toDate().toISOString() : oldData.deadline
+            };
             sendTaskNotification(updatedTask, 'task_updated');
         }
 
@@ -230,13 +267,19 @@ export async function getCompletedTasks(filters = {}) {
 }
 
 // Delete task
-export async function deleteTask(taskId) {
+export async function deleteTask(taskId, silent = false) {
     try {
         const taskRef = doc(db, "tasks", taskId);
         const taskSnap = await getDoc(taskRef);
         const taskData = taskSnap.data();
 
         await deleteDoc(taskRef);
+
+        if (silent) {
+            const { logSystemAction } = await import('./db.js');
+            await logSystemAction('ultimate_delete', `Deleted task: ${taskData.title}`, { taskId });
+            return;
+        }
 
         await logAction(
             window.CuteState.user.uid,

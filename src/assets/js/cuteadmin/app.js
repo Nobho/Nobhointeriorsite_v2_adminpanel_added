@@ -6,8 +6,36 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase
 import { firebaseConfig } from './config.js';
 import { initAuth, login, logout } from './auth.js';
 import { renderLoginPage, renderDashboardPage, renderProfilePage, showToast, renderAuditLogPage, renderProjectsPage, renderUsersPage, renderDashboardContent } from './ui.js';
+import { renderUltimateView } from './ultimate-view.js';
 import { uploadProfilePhoto, changeUserPassword } from './profile.js';
 import { initMobileMenu } from './mobile-nav.js';
+
+// Placeholder for Projects Module (Future Development)
+function renderProjectsPlaceholder() {
+    const content = document.getElementById('mainContentArea');
+    if (!content) return;
+    content.innerHTML = `
+        <div class="ims-page projects-placeholder">
+            <div class="placeholder-content">
+                <i class="material-icons-round" style="font-size: 5rem; color: #00C9BC; margin-bottom: 1rem;">construction</i>
+                <h2>Projects Module</h2>
+                <p style="color: #64748b; max-width: 400px; margin: 1rem auto;">
+                    This module is under development. Soon you'll be able to manage projects, 
+                    link invoices, and track project milestones here.
+                </p>
+                <div style="background: #f1f5f9; padding: 1rem; border-radius: 12px; margin-top: 2rem;">
+                    <p style="margin: 0; font-size: 0.9rem; color: #475569;">
+                        <strong>Coming Features:</strong><br>
+                        • Project creation & management<br>
+                        • Link invoices to projects<br>
+                        • Milestone tracking<br>
+                        • Project-based reporting
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 // Initialize Services
 const app = initializeApp(firebaseConfig);
@@ -63,6 +91,16 @@ const handleRoute = () => {
         renderProjectsPage();
     } else if (hash === '#users') {
         renderUsersPage();
+    } else if (hash === '#ultimate') {
+        renderUltimateView();
+    } else if (hash === '#invoices') {
+        import('./invoice-ui.js').then(m => m.renderInvoicesPage());
+    } else if (hash === '#customers') {
+        import('./customer-ui.js').then(m => m.renderCustomersPage());
+    } else if (hash === '#ims-projects') {
+        import('./projects-ui.js').then(m => m.renderProjectsPage());
+    } else if (hash === '#company-settings') {
+        import('./company-settings.js').then(m => m.renderCompanySettingsPage());
     }
 };
 

@@ -62,7 +62,7 @@ service cloud.firestore {
     // --- 2. Users Collection ---
     match /users/{userId} {
       allow read: if isSignedIn();
-      allow update: if isSignedIn() && request.auth.uid == userId;
+      allow update: if isSignedIn() && (request.auth.uid == userId || isAdmin());
       allow create, delete: if isAdmin();
     }
     
@@ -83,7 +83,7 @@ service cloud.firestore {
     
     // --- 5. Notifications ---
     match /notifications/{notificationId} {
-      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
       allow create: if isSignedIn();
       allow update, delete: if isSignedIn() && resource.data.userId == request.auth.uid;
     }
@@ -92,6 +92,48 @@ service cloud.firestore {
     match /tasks/{taskId}/history/{historyId} {
        allow read: if isModerator() || get(/databases/$(database)/documents/tasks/$(taskId)).data.assignedTo == request.auth.uid;
        allow write: if true; 
+    }
+    
+    // --- 7. Customers Collection (IMS) ---
+    match /customers/{customerId} {
+      allow read, write: if isModerator(); // Admins & Moderators have full access
+    }
+    
+    // --- 8. Invoices Collection (IMS) ---
+    match /invoices/{invoiceId} {
+      allow read: if isModerator();
+      allow create: if isModerator();
+      allow update, delete: if isAdmin(); // Strict: Only Admins can edit/delete
+    }
+    
+    // --- 9. Invoice Logs Collection (IMS) ---
+    match /invoiceLogs/{logId} {
+      allow read: if isAdmin(); // Strict: Only Admins see history
+      allow create: if isModerator(); // System logs actions
+      allow update, delete: if false; 
+    }
+    
+    // --- 10. Projects Collection (IMS) ---
+    match /projects/{projectId} {
+      allow read, write: if isModerator(); // Admins & Moderators have full access
+    }
+    
+    // --- 11. Settings Collection (Admin Only) ---
+    match /settings/{settingId} {
+      allow read: if isModerator();
+      allow write: if isAdmin();
+    }
+    
+    // --- 12. Deleted Invoices Collection (Admin Only Archive) ---
+    match /deleted_invoices/{invoiceId} {
+      allow read, write: if isAdmin(); // Only admins can access deleted invoice archive
+    }
+
+    // --- 13. Exported Invoices Log ---
+    match /exported_invoices/{exportId} {
+      allow read: if isModerator(); // Moderators and Admins can view logs
+      allow create: if isModerator(); // They can also create logs (when exporting)
+      allow update, delete: if false; // Immutable logs
     }
   }
 }

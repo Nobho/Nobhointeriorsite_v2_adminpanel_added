@@ -112,7 +112,18 @@ export function renderDashboardPage(user) {
                     <a href="#dashboard"><i class="material-icons-round">dashboard</i> Dashboard</a>
                     <a href="#projects"><i class="material-icons-round">folder</i> Tasks</a>
                     ${(realRole !== 'employee' && currentViewMode !== 'employee') ? '<a href="#users"><i class="material-icons-round">people</i> Team</a>' : ''}
-                    ${(realRole === 'admin' && currentViewMode === 'admin') ? '<a href="#logs"><i class="material-icons-round">history_edu</i> Activity Log</a>' : ''}
+                    ${(realRole !== 'employee' && currentViewMode !== 'employee') ? `
+                        <div class="nav-divider"></div>
+                        <a href="#invoices" class="ims-nav"><i class="material-icons-round">receipt_long</i> Invoices</a>
+                        <a href="#customers" class="ims-nav"><i class="material-icons-round">people_alt</i> Customers</a>
+                        <a href="#ims-projects" class="ims-nav"><i class="material-icons-round">work</i> Projects</a>
+                    ` : ''}
+                    ${(realRole === 'admin' && currentViewMode === 'admin') ? `
+                        <div class="nav-divider"></div>
+                        <a href="#logs"><i class="material-icons-round">history_edu</i> Activity Log</a>
+                        <a href="#ultimate" style="color: #6366f1; font-weight: 600;"><i class="material-icons-round">back_hand</i> Touch of the Founder</a>
+                        <a href="#company-settings" class="ims-nav"><i class="material-icons-round">business</i> Company Settings</a>
+                    ` : ''}
                     <a href="#settings"><i class="material-icons-round">settings</i> Settings</a>
                     <button id="logoutBtn" class="logout-link"><i class="material-icons-round">logout</i> Logout</button>
                 </nav>
@@ -764,6 +775,30 @@ function showTaskModal(taskId = null) {
                         <option value="high">🔴 High</option>
                     </select>
                 </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="input-group">
+                        <label>Customer <small style="color: #64748b;">(optional)</small></label>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select id="taskCustomer" style="flex: 1;">
+                                <option value="">No customer</option>
+                            </select>
+                            <button type="button" class="btn-icon" id="quickAddCustomerBtn" title="Add Customer" style="padding: 0.5rem;">
+                                <i class="material-icons-round" style="font-size: 1.2rem;">person_add</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Project <small style="color: #64748b;">(optional)</small></label>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select id="taskProject" style="flex: 1;">
+                                <option value="">No project</option>
+                            </select>
+                            <button type="button" class="btn-icon" id="quickAddProjectBtn" title="Add Project" style="padding: 0.5rem;">
+                                <i class="material-icons-round" style="font-size: 1.2rem;">add_circle</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div class="input-group">
                     <label>Deadline <span style="color: #ef4444;">*</span></label>
                     <input type="date" id="taskDeadline" required>
@@ -841,6 +876,72 @@ function showTaskModal(taskId = null) {
         }
     })();
 
+    // Load customers and projects for dropdowns (async)
+    (async () => {
+        try {
+            const { getCurrentCustomers } = await import('./customers.js');
+            const { getActiveProjects } = await import('./projects.js');
+
+            // Load customers
+            const customers = await getCurrentCustomers();
+            const customerSelect = document.getElementById('taskCustomer');
+            if (customerSelect) {
+                customerSelect.innerHTML = `
+                    <option value="">No customer</option>
+                    ${customers.map(c => `
+                        <option value="${c.id}" data-name="${c.name}">
+                            ${c.name}${c.company ? ` (${c.company})` : ''}
+                        </option>
+                    `).join('')}
+                `;
+            }
+
+            // Load projects
+            const projects = await getActiveProjects();
+            const projectSelect = document.getElementById('taskProject');
+            if (projectSelect) {
+                projectSelect.innerHTML = `
+                    <option value="">No project</option>
+                    ${projects.map(p => `
+                        <option value="${p.id}" data-name="${p.name}">
+                            ${p.name}${p.customerName ? ` (${p.customerName})` : ''}
+                        </option>
+                    `).join('')}
+                `;
+            }
+        } catch (error) {
+            console.error('Error loading customers/projects:', error);
+        }
+    })();
+
+    // Quick Add Customer button
+    document.getElementById('quickAddCustomerBtn')?.addEventListener('click', async () => {
+        const { showQuickProjectModal } = await import('./projects.js');
+        // Reuse customer modal from customer-ui.js via global function
+        if (typeof window.editCustomer === 'function') {
+            window.editCustomer(null); // null = create new
+        } else {
+            showToast("Customer module not loaded", "error");
+        }
+    });
+
+    // Quick Add Project button
+    document.getElementById('quickAddProjectBtn')?.addEventListener('click', async () => {
+        const { showQuickProjectModal } = await import('./projects.js');
+        showQuickProjectModal((newId, newName) => {
+            // After project created, add it to the dropdown
+            const select = document.getElementById('taskProject');
+            if (select) {
+                const option = document.createElement('option');
+                option.value = newId;
+                option.dataset.name = newName;
+                option.textContent = newName;
+                option.selected = true;
+                select.appendChild(option);
+            }
+        });
+    });
+
     // Close handlers
     modal.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', () => modal.remove());
@@ -895,12 +996,24 @@ function showTaskModal(taskId = null) {
             .map(input => input.value.trim())
             .filter(val => val.length > 0);
 
+        // Get customer and project selections
+        const customerSelect = document.getElementById('taskCustomer');
+        const projectSelect = document.getElementById('taskProject');
+
+        const selectedCustomer = customerSelect?.options[customerSelect?.selectedIndex];
+        const selectedProject = projectSelect?.options[projectSelect?.selectedIndex];
+
         const taskData = {
             title: document.getElementById('taskTitle').value,
             description: document.getElementById('taskDesc').value,
             priority: document.getElementById('taskPriority').value,
             deadline: new Date(document.getElementById('taskDeadline').value),
             referenceLinks: referenceLinks,
+            // Customer & Project linking (from IMS)
+            customerId: customerSelect?.value || null,
+            customerName: selectedCustomer?.dataset?.name || "",
+            projectId: projectSelect?.value || null,
+            projectName: selectedProject?.dataset?.name || "",
             assignees: assigneeData
         };
 

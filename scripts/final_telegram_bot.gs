@@ -31,26 +31,43 @@ const CONFIG = {
 // --- WEBHOOK HANDLER ---
 function doPost(e) {
   try {
+    Logger.log('🌐 Webhook received at: ' + new Date().toISOString());
+    
     const data = JSON.parse(e.postData.contents);
     const action = data.action;
     const task = data.task;
+    
+    Logger.log('📋 Action: ' + action);
+    Logger.log('📦 Task data received: ' + JSON.stringify(task));
     
     // 1. Sync to Google Sheet (Update or Create)
     syncTaskToSheet(task);
     
     // 2. Send Notifications based on Action
     if (action === 'task_created') {
+        Logger.log('🆕 Processing task_created');
         notifyGroup_NewTask(task);
         notifyAssignee_NewTask(task);
     } 
     else if (action === 'task_completed') {
+        Logger.log('✅ Processing task_completed');
         notifyGroup_Completion(task);
         notifyAssignee_Completion(task); // Notify assignee if someone else completed their task
         notifyCreator_Completion(task);  // Notify creator if they didn't complete it themselves
     }
+    else if (action === 'task_updated') {
+        Logger.log('🔄 Processing task_updated');
+        notifyGroup_Update(task);
+    }
+    else {
+        Logger.log('⚠️ Unknown action type: ' + action);
+    }
     
+    Logger.log('✅ Webhook processing completed successfully');
     return ContentService.createTextOutput(JSON.stringify({success: true}));
   } catch (err) {
+    Logger.log('❌ ERROR in doPost: ' + err.toString());
+    Logger.log('Stack trace: ' + err.stack);
     return ContentService.createTextOutput(JSON.stringify({success: false, error: err.toString()}));
   }
 }
@@ -70,22 +87,55 @@ function notifyGroup_NewTask(task) {
 }
 
 function notifyGroup_Completion(task) {
-  // Calculate Duration
-  const duration = calculateDuration(task.createdAt, task.completedAt);
-  
-  // Determine who completed it
-  let completerName = task.assignedToName;
-  if (task.completedBy && task.completedBy !== task.assignedTo) {
-      completerName = `${task.assignedToName} (or teammate)`;
-  }
+  try {
+    Logger.log('📥 notifyGroup_Completion called with task:');
+    Logger.log(JSON.stringify(task));
+    
+    // Validate required fields
+    if (!task) {
+      Logger.log('❌ ERROR: Task object is null or undefined');
+      return;
+    }
+    
+    if (!task.title) {
+      Logger.log('❌ ERROR: Task title is missing');
+      return;
+    }
+    
+    if (!task.createdAt) {
+      Logger.log('⚠️ WARNING: createdAt is missing, using fallback');
+    }
+    
+    if (!task.completedAt) {
+      Logger.log('⚠️ WARNING: completedAt is missing, using current time');
+    }
+    
+    // Calculate Duration with fallback
+    const duration = calculateDuration(task.createdAt, task.completedAt);
+    Logger.log('⏱ Calculated duration: ' + duration);
+    
+    // Determine who completed it
+    let completerName = task.assignedToName || 'Unknown User';
+    if (task.completedBy && task.completedBy !== task.assignedTo) {
+        completerName = `${task.assignedToName || 'Unknown'} (or teammate)`;
+    }
+    
+    Logger.log('👤 Completer name: ' + completerName);
 
-  // Format: Name -- Completed his task - 'Task Title'
-  const msg = `✅ <b>${completerName} -- Completed his/her task - '${task.title}'</b>\n\n` +
-              `⏱ Done in ${duration}\n` +
-              `📁 <a href="${task.fileLink || '#'}">View Delivery</a>\n\n` +
-              `🔗 <a href="${ADMIN_URL}">Open Dashboard</a>`;
-              
-  sendMessage(CONFIG.GROUP_CHAT_ID, msg);
+    // Format: Name -- Completed his task - 'Task Title'
+    const msg = `✅ <b>${completerName} -- Completed his/her task - '${task.title}'</b>\n\n` +
+                `⏱ Done in ${duration}\n` +
+                `📁 <a href="${task.fileLink || '#'}">View Delivery</a>\n\n` +
+                `🔗 <a href="${ADMIN_URL}">Open Dashboard</a>`;
+    
+    Logger.log('📨 Sending message to group: ' + CONFIG.GROUP_CHAT_ID);
+    sendMessage(CONFIG.GROUP_CHAT_ID, msg);
+    Logger.log('✅ Message sent successfully');
+    
+  } catch (err) {
+    Logger.log('❌ ERROR in notifyGroup_Completion: ' + err.toString());
+    Logger.log('Stack trace: ' + err.stack);
+  }
 }
 
 function notifyAssignee_NewTask(task) {
@@ -99,6 +149,19 @@ function notifyAssignee_NewTask(task) {
               `📅 Deadline: ${formatDate(task.deadline)}\n\n` +
               `👉 <a href="${ADMIN_URL}">Login to Dashboard</a> to start working.`;
   sendMessage(telegramId, msg);
+}
+
+function notifyGroup_Update(task) {
+  // Only notify if status seems important (not just typo fix)
+  // For now, we notify on all updates that reach here (which is status changes mostly)
+  
+  const msg = `🔄 <b>Task Updated</b>\n\n` +
+              `📌 <b>${task.title}</b>\n` +
+              `Status: ${task.status.replace('_', ' ').toUpperCase()}\n` +
+              `Assigned to: ${task.assignedToName}\n\n` +
+              `🔗 <a href="${ADMIN_URL}">Open Dashboard</a>`;
+              
+  sendMessage(CONFIG.GROUP_CHAT_ID, msg);
 }
 
 function notifyCreator_Completion(task) {
