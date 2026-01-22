@@ -1,0 +1,32 @@
+{
+    "themeName": "Nobho Interior Default",
+    "version": "1.0.0",
+    "typography": {
+        "fontFamily": "'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        "headings": {
+            "weight": 600,
+            "color": "#1e293b"
+        },
+        "body": {
+            "weight": 400,
+            "color": "#475569"
+        }
+    },
+    "colors": {
+        "primary": "#4f46e5",
+        "primaryHover": "#4338ca",
+        "secondary": "#64748b",
+        "success": "#16a34a",
+        "warning": "#ca8a04",
+        "danger": "#dc2626",
+        "info": "#2563eb",
+        "background": "#f8fafc",
+        "surface": "#ffffff",
+        "border": "#e2e8f0"
+    },
+    "components": {
+        "borderRadius": "12px",
+        "inputHeight": "44px",
+        "cardShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+    }
+}

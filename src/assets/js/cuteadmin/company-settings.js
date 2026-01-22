@@ -129,113 +129,135 @@ export async function renderCompanySettingsPage() {
             
             <form id="companySettingsForm" class="ims-form settings-form">
                 <!-- Company Identity -->
-                <div class="settings-section">
-                    <h3><i class="material-icons-round">badge</i> Company Identity</h3>
-                    <div class="form-row">
-                        <div class="input-group-ims">
-                            <label>Company Name <span class="required">*</span></label>
-                            <input type="text" id="companyName" value="${settings.name}" required>
-                        </div>
-                        <div class="input-group-ims">
-                            <label>Tagline</label>
-                            <input type="text" id="companyTagline" value="${settings.tagline || ''}" placeholder="e.g. Interior Design Studio">
-                        </div>
+                <div class="form-card modern-card">
+                    <div class="card-header-modern">
+                        <div class="icon-box"><i class="material-icons-round">badge</i></div>
+                        <h3>Company Identity</h3>
                     </div>
-                    <div class="input-group-ims">
-                        <label>Logo URL</label>
-                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                            <div style="flex: 1;">
-                                <input type="text" id="companyLogo" value="${settings.logoUrl || ''}" placeholder="/assets/images/logo.svg">
-                                <small style="color: #64748b;">Enter the path (e.g. /assets/images/logo.svg) or URL to your logo</small>
+                    <div class="card-body">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="input-group-modern">
+                                <label class="modern-label">Company Name <span class="required">*</span></label>
+                                <input type="text" id="companyName" value="${settings.name}" class="modern-input" required>
                             </div>
-                            <div id="logoPreviewContainer" style="width: 100px; height: 100px; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f8fafc; overflow: hidden;">
-                                ${settings.logoUrl ? `<img src="${settings.logoUrl}" id="logoPreview" style="max-width: 100%; max-height: 100%; object-fit: contain;">` : '<i class="material-icons-round" style="color: #cbd5e1; font-size: 2rem;">image</i>'}
+                            <div class="input-group-modern">
+                                <label class="modern-label">Tagline</label>
+                                <input type="text" id="companyTagline" value="${settings.tagline || ''}" class="modern-input" placeholder="e.g. Interior Design Studio">
+                            </div>
+                        </div>
+                        <div class="input-group-modern">
+                            <label class="modern-label">Logo URL</label>
+                            <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <input type="text" id="companyLogo" value="${settings.logoUrl || ''}" class="modern-input" placeholder="/assets/images/logo.svg">
+                                    <small style="color: #64748b; margin-top: 0.5rem; display: block;">Enter the path (e.g. /assets/images/logo.svg) or URL to your logo</small>
+                                </div>
+                                <div id="logoPreviewContainer" style="width: 80px; height: 80px; border: 1px dashed #e2e8f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #fff; overflow: hidden; flex-shrink: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                                    ${settings.logoUrl ? `<img src="${settings.logoUrl}" id="logoPreview" style="max-width: 100%; max-height: 100%; object-fit: contain;">` : '<i class="material-icons-round" style="color: #cbd5e1; font-size: 2rem;">image</i>'}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Contact Information -->
-                <div class="settings-section">
-                    <h3><i class="material-icons-round">contact_phone</i> Contact Information</h3>
-                    <div class="form-row">
-                        <div class="input-group-ims">
-                            <label>Email</label>
-                            <input type="email" id="companyEmail" value="${settings.email || ''}" placeholder="hello@company.com">
-                        </div>
-                        <div class="input-group-ims">
-                            <label>Phone</label>
-                            <input type="tel" id="companyPhone" value="${settings.phone || ''}" placeholder="+880 1XXX-XXXXXX">
-                        </div>
+                <div class="form-card modern-card">
+                    <div class="card-header-modern">
+                        <div class="icon-box"><i class="material-icons-round">contact_phone</i></div>
+                        <h3>Contact Information</h3>
                     </div>
-                    <div class="form-row">
-                        <div class="input-group-ims">
-                            <label>Website</label>
-                            <input type="text" id="companyWebsite" value="${settings.website || ''}" placeholder="www.company.com">
+                    <div class="card-body">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="input-group-modern">
+                                <label class="modern-label">Email</label>
+                                <input type="email" id="companyEmail" value="${settings.email || ''}" class="modern-input" placeholder="hello@company.com">
+                            </div>
+                            <div class="input-group-modern">
+                                <label class="modern-label">Phone</label>
+                                <input type="tel" id="companyPhone" value="${settings.phone || ''}" class="modern-input" placeholder="+880 1XXX-XXXXXX">
+                            </div>
                         </div>
-                        <div class="input-group-ims">
-                            <label>Tax ID / VAT Number</label>
-                            <input type="text" id="companyTaxId" value="${settings.taxId || ''}" placeholder="Optional">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="input-group-modern">
+                                <label class="modern-label">Website</label>
+                                <input type="text" id="companyWebsite" value="${settings.website || ''}" class="modern-input" placeholder="www.company.com">
+                            </div>
+                            <div class="input-group-modern">
+                                <label class="modern-label">Tax ID / VAT Number</label>
+                                <input type="text" id="companyTaxId" value="${settings.taxId || ''}" class="modern-input" placeholder="Optional">
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group-ims">
-                        <label>Address</label>
-                        <textarea id="companyAddress" rows="2" placeholder="Full business address">${settings.address || ''}</textarea>
+                        <div class="input-group-modern">
+                            <label class="modern-label">Address</label>
+                            <textarea id="companyAddress" rows="2" class="modern-input" placeholder="Full business address">${settings.address || ''}</textarea>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Bank Details -->
-                <div class="settings-section">
-                    <h3><i class="material-icons-round">account_balance</i> Bank Details</h3>
-                    <div class="form-row">
-                        <div class="input-group-ims">
-                            <label>Bank Name</label>
-                            <input type="text" id="bankName" value="${settings.bankName || ''}" placeholder="e.g. BRAC Bank">
-                        </div>
-                        <div class="input-group-ims">
-                            <label>Account Name</label>
-                            <input type="text" id="bankAccountName" value="${settings.bankAccountName || ''}" placeholder="Account holder name">
-                        </div>
+                <div class="form-card modern-card">
+                    <div class="card-header-modern">
+                        <div class="icon-box"><i class="material-icons-round">account_balance</i></div>
+                        <h3>Bank Details</h3>
                     </div>
-                    <div class="form-row">
-                        <div class="input-group-ims">
-                            <label>Account Number</label>
-                            <input type="text" id="bankAccountNumber" value="${settings.bankAccountNumber || ''}" placeholder="XXXX-XXXX-XXXX">
+                    <div class="card-body">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="input-group-modern">
+                                <label class="modern-label">Bank Name</label>
+                                <input type="text" id="bankName" value="${settings.bankName || ''}" class="modern-input" placeholder="e.g. BRAC Bank">
+                            </div>
+                            <div class="input-group-modern">
+                                <label class="modern-label">Account Name</label>
+                                <input type="text" id="bankAccountName" value="${settings.bankAccountName || ''}" class="modern-input" placeholder="Account holder name">
+                            </div>
                         </div>
-                        <div class="input-group-ims">
-                            <label>Branch</label>
-                            <input type="text" id="bankBranch" value="${settings.bankBranch || ''}" placeholder="Branch name">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="input-group-modern">
+                                <label class="modern-label">Account Number</label>
+                                <input type="text" id="bankAccountNumber" value="${settings.bankAccountNumber || ''}" class="modern-input" placeholder="XXXX-XXXX-XXXX">
+                            </div>
+                            <div class="input-group-modern">
+                                <label class="modern-label">Branch</label>
+                                <input type="text" id="bankBranch" value="${settings.bankBranch || ''}" class="modern-input" placeholder="Branch name">
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Invoice Defaults -->
-                <div class="settings-section">
-                    <h3><i class="material-icons-round">receipt_long</i> Invoice Defaults</h3>
-                    <div class="form-row">
-                        <div class="input-group-ims">
-                            <label>Currency</label>
-                            <select id="defaultCurrency">
-                                <option value="BDT" ${settings.defaultCurrency === 'BDT' ? 'selected' : ''}>৳ BDT (Taka)</option>
-                                <option value="USD" ${settings.defaultCurrency === 'USD' ? 'selected' : ''}>$ USD (Dollar)</option>
-                                <option value="EUR" ${settings.defaultCurrency === 'EUR' ? 'selected' : ''}>€ EUR (Euro)</option>
-                            </select>
-                        </div>
-                        <div class="input-group-ims">
-                            <label>Currency Symbol</label>
-                            <input type="text" id="currencySymbol" value="${settings.currencySymbol || '৳'}" maxlength="3">
-                        </div>
+                <div class="form-card modern-card">
+                    <div class="card-header-modern">
+                        <div class="icon-box"><i class="material-icons-round">receipt_long</i></div>
+                        <h3>Invoice Defaults</h3>
                     </div>
-                    <div class="input-group-ims">
-                        <label>Default Terms & Conditions</label>
-                        <textarea id="defaultTerms" rows="3" placeholder="Payment terms, conditions, etc.">${settings.defaultTerms || ''}</textarea>
+                    <div class="card-body">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="input-group-modern">
+                                <label class="modern-label">Currency</label>
+                                <select id="defaultCurrency" class="modern-select">
+                                    <option value="BDT" ${settings.defaultCurrency === 'BDT' ? 'selected' : ''}>৳ BDT (Taka)</option>
+                                    <option value="USD" ${settings.defaultCurrency === 'USD' ? 'selected' : ''}>$ USD (Dollar)</option>
+                                    <option value="EUR" ${settings.defaultCurrency === 'EUR' ? 'selected' : ''}>€ EUR (Euro)</option>
+                                </select>
+                            </div>
+                            <div class="input-group-modern">
+                                <label class="modern-label">Currency Symbol</label>
+                                <input type="text" id="currencySymbol" value="${settings.currencySymbol || '৳'}" class="modern-input" maxlength="3">
+                            </div>
+                        </div>
+                        <div class="input-group-modern">
+                            <label class="modern-label">Default Terms & Conditions</label>
+                            <textarea id="defaultTerms" rows="3" class="modern-input" placeholder="Payment terms, conditions, etc.">${settings.defaultTerms || ''}</textarea>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--ims-border);">
-                    <button type="submit" class="btn-primary-ims">
-                        <i class="material-icons-round">save</i> Save Settings
-                    </button>
+                <div class="form-actions" style="position: sticky; bottom: 0; background: white; padding: 1.5rem 0; border-top: 1px solid #f1f5f9; z-index: 10;">
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button type="submit" class="btn-primary-ims large">
+                            <i class="material-icons-round">save</i> Save Settings
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

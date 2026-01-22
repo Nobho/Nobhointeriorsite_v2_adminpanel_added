@@ -205,46 +205,52 @@ export function showCustomerModal(customerId = null, onSuccess = null) {
     const isEdit = !!customerId;
 
     modal.innerHTML = `
-        <div class="modal-content ims-modal-content">
-            <div class="modal-header ims-modal-header">
-                <h2><i class="material-icons-round">${isEdit ? 'edit' : 'person_add'}</i> ${isEdit ? 'Edit Customer' : 'Add New Customer'}</h2>
-                <button class="modal-close">&times;</button>
+        <div class="modal-content ims-modal-content modern-card" style="max-width: 600px; padding: 0;">
+            <div class="card-header-modern" style="padding: 1.5rem; background: #fff; border-bottom: 1px solid #f1f5f9;">
+                <div class="icon-box"><i class="material-icons-round">${isEdit ? 'edit' : 'person_add'}</i></div>
+                <h2 style="font-size: 1.25rem;">${isEdit ? 'Edit Customer' : 'Add New Customer'}</h2>
+                <button class="modal-close" style="margin-left: auto; background: none; border: none; cursor: pointer; color: #64748b;"><i class="material-icons-round">close</i></button>
             </div>
-            <form id="customerForm" class="ims-form">
-                <div class="form-row">
-                    <div class="input-group-ims">
-                        <label>Customer Name <span class="required">*</span></label>
-                        <input type="text" id="customerName" placeholder="e.g. Mr. Rahman" required>
+            <form id="customerForm" class="ims-form" style="padding: 1.5rem;">
+                <div class="form-row" style="margin-bottom: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="input-group-modern">
+                        <label class="modern-label">Customer Name <span class="required">*</span></label>
+                        <input type="text" id="customerName" class="modern-input" placeholder="e.g. Mr. Rahman" required>
                     </div>
-                    <div class="input-group-ims">
-                        <label>Company Name</label>
-                        <input type="text" id="customerCompany" placeholder="e.g. ABC Corporation">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="input-group-ims">
-                        <label>Email</label>
-                        <input type="email" id="customerEmail" placeholder="customer@example.com">
-                    </div>
-                    <div class="input-group-ims">
-                        <label>Phone</label>
-                        <input type="tel" id="customerPhone" placeholder="+880 1XXX-XXXXXX">
+                    <div class="input-group-modern">
+                        <label class="modern-label">Company Name</label>
+                        <input type="text" id="customerCompany" class="modern-input" placeholder="e.g. ABC Corporation">
                     </div>
                 </div>
-                <div class="input-group-ims">
-                    <label>Billing Address</label>
-                    <textarea id="customerBillingAddress" rows="2" placeholder="Street, City, Postal Code"></textarea>
+                
+                <div class="form-row" style="margin-bottom: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="input-group-modern">
+                        <label class="modern-label">Email</label>
+                        <input type="email" id="customerEmail" class="modern-input" placeholder="customer@example.com">
+                    </div>
+                    <div class="input-group-modern">
+                        <label class="modern-label">Phone</label>
+                        <input type="tel" id="customerPhone" class="modern-input" placeholder="+880 1XXX-XXXXXX">
+                    </div>
                 </div>
-                <div class="input-group-ims">
-                    <label>Site Address (if different)</label>
-                    <textarea id="customerSiteAddress" rows="2" placeholder="Project site location"></textarea>
+
+                <div class="input-group-modern" style="margin-bottom: 1.5rem;">
+                    <label class="modern-label">Billing Address</label>
+                    <textarea id="customerBillingAddress" rows="2" class="modern-input" placeholder="Street, City, Postal Code"></textarea>
                 </div>
-                <div class="input-group-ims">
-                    <label>Notes</label>
-                    <textarea id="customerNotes" rows="2" placeholder="Any additional notes..."></textarea>
+
+                <div class="input-group-modern" style="margin-bottom: 1.5rem;">
+                    <label class="modern-label">Site Address (if different)</label>
+                    <textarea id="customerSiteAddress" rows="2" class="modern-input" placeholder="Project site location"></textarea>
                 </div>
-                <div class="modal-actions ims-modal-actions">
-                    <button type="button" class="btn-secondary modal-close">Cancel</button>
+
+                <div class="input-group-modern" style="margin-bottom: 1.5rem;">
+                    <label class="modern-label">Notes</label>
+                    <textarea id="customerNotes" rows="2" class="modern-input" placeholder="Any additional notes..."></textarea>
+                </div>
+
+                <div class="modal-actions ims-modal-actions" style="border-top: 1px solid #f1f5f9; padding-top: 1.5rem; margin-top: 0;">
+                    <button type="button" class="btn-secondary-ims modal-close">Cancel</button>
                     <button type="submit" class="btn-primary-ims">${isEdit ? 'Update Customer' : 'Add Customer'}</button>
                 </div>
             </form>

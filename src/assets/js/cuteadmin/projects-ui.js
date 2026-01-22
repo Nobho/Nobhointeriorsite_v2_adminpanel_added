@@ -242,20 +242,22 @@ async function showProjectModal(projectId = null) {
     modal.id = 'projectModal';
 
     modal.innerHTML = `
-        <div class="modal-content ims-modal-content" style="max-width: 600px;">
-            <div class="modal-header ims-modal-header">
-                <h2><i class="material-icons-round">${isEdit ? 'edit' : 'work'}</i> ${isEdit ? 'Edit Project' : 'Create New Project'}</h2>
-                <button class="modal-close">&times;</button>
+        <div class="modal-content ims-modal-content modern-card" style="max-width: 650px; padding: 0;">
+            <div class="card-header-modern" style="padding: 1.5rem; background: #fff; border-bottom: 1px solid #f1f5f9;">
+                <div class="icon-box"><i class="material-icons-round">${isEdit ? 'edit' : 'work'}</i></div>
+                <h2 style="font-size: 1.25rem;">${isEdit ? 'Edit Project' : 'Create New Project'}</h2>
+                <button class="modal-close" style="margin-left: auto; background: none; border: none; cursor: pointer; color: #64748b;"><i class="material-icons-round">close</i></button>
             </div>
-            <form id="projectForm" class="ims-form">
-                <div class="input-group-ims">
-                    <label>Project Name <span class="required">*</span></label>
-                    <input type="text" id="projectName" value="${project?.name || ''}" placeholder="e.g. Gulshan Apartment Renovation" required>
+            <form id="projectForm" class="ims-form" style="padding: 1.5rem;">
+                <div class="input-group-modern" style="margin-bottom: 1.5rem;">
+                    <label class="modern-label">Project Name <span class="required">*</span></label>
+                    <input type="text" id="projectName" value="${project?.name || ''}" class="modern-input" placeholder="e.g. Gulshan Apartment Renovation" required>
                 </div>
-                <div class="form-row">
-                    <div class="input-group-ims">
-                        <label>Customer</label>
-                        <select id="projectCustomer">
+
+                <div class="form-row" style="margin-bottom: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="input-group-modern">
+                        <label class="modern-label">Customer</label>
+                        <select id="projectCustomer" class="modern-select" style="width: 100%;">
                             <option value="">No customer assigned</option>
                             ${customers.map(c => `
                                 <option value="${c.id}" data-name="${c.name}" ${project?.customerId === c.id ? 'selected' : ''}>
@@ -264,9 +266,9 @@ async function showProjectModal(projectId = null) {
                             `).join('')}
                         </select>
                     </div>
-                    <div class="input-group-ims">
-                        <label>Status</label>
-                        <select id="projectStatus">
+                    <div class="input-group-modern">
+                        <label class="modern-label">Status</label>
+                        <select id="projectStatus" class="modern-select" style="width: 100%;">
                             <option value="planning" ${project?.status === 'planning' ? 'selected' : ''}>📋 Planning</option>
                             <option value="in_progress" ${project?.status === 'in_progress' ? 'selected' : ''}>🚧 In Progress</option>
                             <option value="on_hold" ${project?.status === 'on_hold' ? 'selected' : ''}>⏸️ On Hold</option>
@@ -275,26 +277,30 @@ async function showProjectModal(projectId = null) {
                         </select>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="input-group-ims">
-                        <label>Location</label>
-                        <input type="text" id="projectLocation" value="${project?.location || ''}" placeholder="e.g. Gulshan-2, Dhaka">
+
+                <div class="form-row" style="margin-bottom: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="input-group-modern">
+                        <label class="modern-label">Location</label>
+                        <input type="text" id="projectLocation" class="modern-input" value="${project?.location || ''}" placeholder="e.g. Gulshan-2, Dhaka">
                     </div>
-                    <div class="input-group-ims">
-                        <label>Budget (৳)</label>
-                        <input type="number" id="projectBudget" value="${project?.budget || ''}" placeholder="0" min="0">
+                    <div class="input-group-modern">
+                        <label class="modern-label">Budget (৳)</label>
+                        <input type="number" id="projectBudget" class="modern-input" value="${project?.budget || ''}" placeholder="0" min="0">
                     </div>
                 </div>
-                <div class="input-group-ims">
-                    <label>Description</label>
-                    <textarea id="projectDescription" rows="3" placeholder="Brief project description...">${project?.description || ''}</textarea>
+
+                <div class="input-group-modern" style="margin-bottom: 1.5rem;">
+                    <label class="modern-label">Description</label>
+                    <textarea id="projectDescription" rows="3" class="modern-input" placeholder="Brief project description...">${project?.description || ''}</textarea>
                 </div>
-                <div class="input-group-ims">
-                    <label>Notes</label>
-                    <textarea id="projectNotes" rows="2" placeholder="Internal notes...">${project?.notes || ''}</textarea>
+
+                <div class="input-group-modern" style="margin-bottom: 1.5rem;">
+                    <label class="modern-label">Notes</label>
+                    <textarea id="projectNotes" rows="2" class="modern-input" placeholder="Internal notes...">${project?.notes || ''}</textarea>
                 </div>
-                <div class="modal-actions ims-modal-actions">
-                    <button type="button" class="btn-secondary modal-close">Cancel</button>
+
+                <div class="modal-actions ims-modal-actions" style="border-top: 1px solid #f1f5f9; padding-top: 1.5rem; margin-top: 0;">
+                    <button type="button" class="btn-secondary-ims modal-close">Cancel</button>
                     <button type="submit" class="btn-primary-ims">${isEdit ? 'Update Project' : 'Create Project'}</button>
                 </div>
             </form>

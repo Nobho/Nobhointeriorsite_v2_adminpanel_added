@@ -450,196 +450,229 @@ export function showInvoiceEditor(invoiceId = null) {
 
     // Render the page instantly with loading state for dropdown
     mainContent.innerHTML = `
-        <div class="ims-page invoice-editor-page">
-            <div class="page-header-ims">
+        <div class="ims-page invoice-editor-page fixed-layout">
+            <!-- Fixed Header -->
+            <div class="page-header-ims fixed-header">
                 <div class="header-left">
                     <button class="btn-back" onclick="window.cancelInvoiceEditor()">
                         <i class="material-icons-round">arrow_back</i>
                     </button>
                     <div class="header-info">
-                        <h1>${isEdit ? 'Edit Invoice' : 'Create New Invoice'}</h1>
-                        <p class="subtitle">${isEdit ? 'Loading invoice...' : 'Fill in the details below'}</p>
+                        <h1>${isEdit ? 'Edit Invoice' : 'New Invoice'}</h1>
+                        <p class="subtitle">${isEdit ? 'Refine details' : 'Draft a new invoice'}</p>
                     </div>
+                </div>
+                <div class="header-actions">
+                     <div class="status-indicator">
+                        <span class="status-dot"></span> Draft
+                     </div>
                 </div>
             </div>
             
-            <form id="invoiceForm" class="invoice-editor-form">
-                <div class="editor-grid">
-                    <!-- Left Column: Main Content -->
-                    <div class="editor-main">
-                        <!-- Customer Selection -->
-                        <div class="form-card">
-                            <h3><i class="material-icons-round">person</i> Customer Information</h3>
-                            <div class="form-row">
-                                <div class="input-group-ims" style="flex: 1;">
-                                    <label>Customer <span class="required">*</span></label>
-                                    <div class="customer-select-wrapper">
-                                        <select id="invoiceCustomer" class="customer-select-ims" required>
-                                            <option value="">Loading customers...</option>
-                                        </select>
-                                        <button type="button" class="btn-icon-ims" onclick="window.quickAddCustomerFromInvoice()" title="Add New Customer">
-                                            <i class="material-icons-round">person_add</i>
+            <!-- Scrollable Content Area -->
+            <div class="editor-scroll-area">
+                <form id="invoiceForm" class="invoice-editor-form modern-form">
+                    <div class="editor-grid">
+                        <!-- Left Column: Main Form -->
+                        <div class="editor-main">
+                            <!-- Customer Selection Card -->
+                            <div class="form-card modern-card customer-card">
+                                <div class="card-header-modern">
+                                    <div class="icon-box"><i class="material-icons-round">person</i></div>
+                                    <h3>Customer Details</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="input-group-ims floating-label">
+                                            <div class="customer-select-wrapper">
+                                                <select id="invoiceCustomer" class="customer-select-ims modern-select" required>
+                                                    <option value="">Loading customers...</option>
+                                                </select>
+                                                <label for="invoiceCustomer">Select Customer</label>
+                                                <button type="button" class="btn-icon-ims quick-add" onclick="window.quickAddCustomerFromInvoice()" title="Add New Customer">
+                                                    <i class="material-icons-round">add</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Invoice Meta Data -->
+                            <div class="form-card modern-card meta-card">
+                                <div class="card-header-modern">
+                                    <div class="icon-box"><i class="material-icons-round">event_note</i></div>
+                                    <h3>Invoice Properties</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="input-group-ims floating-label">
+                                            <input type="date" id="invoiceDate" value="${today}" class="modern-input">
+                                            <label>Invoice Date</label>
+                                        </div>
+                                        <div class="input-group-ims floating-label">
+                                            <input type="date" id="invoiceDueDate" value="" class="modern-input">
+                                            <label>Due Date</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Items Table -->
+                            <div class="form-card modern-card items-card">
+                                <div class="card-header-modern">
+                                    <div class="icon-box"><i class="material-icons-round">shopping_cart</i></div>
+                                    <h3>Line Items</h3>
+                                </div>
+                                <div class="card-body no-padding">
+                                    <div class="items-table-wrapper">
+                                        <table class="items-table modern-table" id="invoiceItemsTable">
+                                            <thead>
+                                                <tr>
+                                                    <th style="min-width: 200px;">Description</th>
+                                                    <th style="min-width: 140px;">Category</th>
+                                                    <th style="min-width: 100px;">Phase</th>
+                                                    <th style="min-width: 120px;">Location</th>
+                                                    <th style="min-width: 80px;">Qty</th>
+                                                    <th style="min-width: 80px;">Unit</th>
+                                                    <th style="min-width: 100px;">Rate</th>
+                                                    <th style="min-width: 100px; text-align: right;">Total</th>
+                                                    <th style="width: 50px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="invoiceItemsBody">
+                                                <tr class="item-row" data-index="0">
+                                                    <td><input type="text" class="item-desc modern-input" placeholder="Item description"></td>
+                                                    <td>
+                                                        <select class="item-boq modern-select">
+                                                            <option value="">Select category</option>
+                                                            <option value="civil">Civil</option>
+                                                            <option value="electrical">Electrical</option>
+                                                            <option value="plumbing">Plumbing</option>
+                                                            <option value="hvac">HVAC</option>
+                                                            <option value="interior">Interior</option>
+                                                            <option value="furniture">Furniture</option>
+                                                            <option value="finishing">Finishing</option>
+                                                            <option value="landscaping">Landscaping</option>
+                                                            <option value="misc">Miscellaneous</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><input type="text" class="item-phase modern-input" placeholder="Phase 1"></td>
+                                                    <td><input type="text" class="item-location modern-input" placeholder="Floor 2"></td>
+                                                    <td><input type="number" class="item-qty modern-input" value="1" min="0" step="0.01"></td>
+                                                    <td>
+                                                        <select class="item-unit modern-select">
+                                                            <option value="pcs">pcs</option>
+                                                            <option value="sqft">sqft</option>
+                                                            <option value="rft">rft</option>
+                                                            <option value="cft">cft</option>
+                                                            <option value="set">set</option>
+                                                            <option value="lump">lump</option>
+                                                            <option value="kg">kg</option>
+                                                            <option value="m">m</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><input type="number" class="item-price modern-input" value="0" min="0" step="0.01"></td>
+                                                    <td class="item-total">৳0</td>
+                                                    <td><button type="button" class="btn-icon-ims danger remove-item-btn"><i class="material-icons-round">remove_circle_outline</i></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="add-item-row">
+                                        <button type="button" class="btn-secondary-ims" id="addItemBtn">
+                                            <i class="material-icons-round">add</i> Add Item
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Invoice Details -->
-                        <div class="form-card">
-                            <h3><i class="material-icons-round">description</i> Invoice Details</h3>
-                            <div class="form-row">
-                                <div class="input-group-ims">
-                                    <label>Invoice Date</label>
-                                    <input type="date" id="invoiceDate" value="${today}">
-                                </div>
-                                <div class="input-group-ims">
-                                    <label>Due Date</label>
-                                    <input type="date" id="invoiceDueDate" value="">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Items Table -->
-                        <div class="form-card items-card">
-                            <h3><i class="material-icons-round">list_alt</i> Items</h3>
-                            <div class="items-table-wrapper">
-                                <table class="items-table" id="invoiceItemsTable">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 200px;">Description</th>
-                                            <th style="min-width: 120px;">BOQ Category</th>
-                                            <th style="min-width: 100px;">Phase</th>
-                                            <th style="min-width: 100px;">Location</th>
-                                            <th style="min-width: 80px;">Qty</th>
-                                            <th style="min-width: 80px;">Unit</th>
-                                            <th style="min-width: 100px;">Rate</th>
-                                            <th style="min-width: 100px;">Total</th>
-                                            <th style="width: 50px;"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="invoiceItemsBody">
-                                        <tr class="item-row" data-index="0">
-                                            <td><input type="text" class="item-desc" value="" placeholder="Item description"></td>
-                                            <td>
-                                                <select class="item-boq">
-                                                    <option value="">-</option>
-                                                    <option value="civil">Civil</option>
-                                                    <option value="electrical">Electrical</option>
-                                                    <option value="plumbing">Plumbing</option>
-                                                    <option value="hvac">HVAC</option>
-                                                    <option value="interior">Interior</option>
-                                                    <option value="furniture">Furniture</option>
-                                                    <option value="finishing">Finishing</option>
-                                                    <option value="landscaping">Landscaping</option>
-                                                    <option value="misc">Miscellaneous</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="text" class="item-phase" value="" placeholder="e.g. Phase 1"></td>
-                                            <td><input type="text" class="item-location" value="" placeholder="e.g. Floor 2"></td>
-                                            <td><input type="number" class="item-qty" value="1" min="1" step="0.01"></td>
-                                            <td>
-                                                <select class="item-unit">
-                                                    <option value="pcs">pcs</option>
-                                                    <option value="sqft">sqft</option>
-                                                    <option value="rft">rft</option>
-                                                    <option value="cft">cft</option>
-                                                    <option value="set">set</option>
-                                                    <option value="lump">lump</option>
-                                                    <option value="kg">kg</option>
-                                                    <option value="m">m</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="number" class="item-price" value="0" min="0" step="0.01"></td>
-                                            <td class="item-total">৳0</td>
-                                            <td><button type="button" class="btn-icon-ims danger remove-item-btn"><i class="material-icons-round">close</i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <button type="button" class="btn-secondary-ims add-item-btn" id="addItemBtn">
-                                <i class="material-icons-round">add</i> Add Item
-                            </button>
-                        </div>
-                        
-                        <!-- Notes -->
-                        <div class="form-card">
-                            <h3><i class="material-icons-round">notes</i> Additional Information</h3>
-                            <div class="form-row">
-                                <div class="input-group-ims">
-                                    <label>Terms & Conditions</label>
-                                    <textarea id="invoiceTerms" rows="3" placeholder="Payment terms, delivery notes, etc."></textarea>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="input-group-ims">
-                                    <label>Notes</label>
-                                    <textarea id="invoiceNotes" rows="3" placeholder="Additional notes for this invoice..."></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Column: Totals Sidebar -->
-                    <div class="editor-sidebar">
-                        <div class="form-card totals-card sticky">
-                            <h3><i class="material-icons-round">calculate</i> Summary</h3>
-                            <div class="totals-grid">
-                                <div class="total-row">
-                                    <span>Subtotal</span>
-                                    <span id="invoiceSubtotal">৳0</span>
-                                </div>
-                                <div class="total-row discount-row">
-                                    <span>Discount</span>
-                                    <div class="discount-input">
-                                        <input type="number" id="invoiceDiscount" value="0" min="0" step="0.01">
-                                        <select id="discountType">
-                                            <option value="fixed">৳</option>
-                                            <option value="percent">%</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="total-row tax-row">
-                                    <span>Tax/VAT</span>
-                                    <div class="tax-input">
-                                        <input type="number" id="invoiceTaxRate" value="0" min="0" max="100" step="0.1">
-                                        <span>%</span>
-                                    </div>
-                                </div>
-                                <div class="total-row grand-total">
-                                    <span>Grand Total</span>
-                                    <span id="invoiceTotal">৳0</span>
-                                </div>
-                            </div>
                             
+                            <!-- Bottom Row: Notes & Totals Split -->
+                            <div class="bottom-split-row">
+                                <!-- Notes (Left) -->
+                                <div class="form-card modern-card notes-card">
+                                    <div class="card-header-modern">
+                                        <div class="icon-box"><i class="material-icons-round">sticky_note_2</i></div>
+                                        <h3>Additional Notes</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="input-group-ims">
+                                                <label>Terms & Conditions</label>
+                                                <textarea id="invoiceTerms" rows="2" class="modern-input" placeholder="Specific terms for this invoice..."></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="input-group-ims">
+                                                <label>Internal Notes</label>
+                                                <textarea id="invoiceNotes" rows="2" class="modern-input" placeholder="Private notes..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Totals (Right) -->
+                                <div class="form-card modern-card totals-card">
+                                    <div class="card-header-modern">
+                                        <div class="icon-box"><i class="material-icons-round">receipt</i></div>
+                                        <h3>Summary</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="totals-grid modern-totals">
+                                            <div class="total-row">
+                                                <span>Subtotal</span>
+                                                <span id="invoiceSubtotal">৳0</span>
+                                            </div>
+                                            <div class="total-row input-row">
+                                                <span>Discount</span>
+                                                <div class="combined-input">
+                                                    <input type="number" id="invoiceDiscount" value="0" min="0" step="0.01" class="modern-input right-align">
+                                                    <select id="discountType" class="modern-select small">
+                                                        <option value="fixed">৳</option>
+                                                        <option value="percent">%</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="total-row input-row">
+                                                <span>Tax/VAT (%)</span>
+                                                <input type="number" id="invoiceTaxRate" value="0" min="0" max="100" step="0.1" class="modern-input right-align tax-input">
+                                            </div>
+                                            <div class="total-divider"></div>
+                                            <div class="total-row grand-total">
+                                                <span>Total Due</span>
+                                                <span id="invoiceTotal" class="highlight-text">৳0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
+            </div>
 
-                <!-- Sticky Action Footer -->
-                <div class="invoice-editor-footer-ims">
-                    <div class="footer-left">
-                        <button type="button" class="btn-secondary-ims" onclick="window.previewCurrentInvoice()">
-                            <i class="material-icons-round">preview</i> Live Preview
-                        </button>
-                        <button type="button" class="btn-secondary-ims" onclick="window.downloadCurrentInvoice('pdf')">
-                            <i class="material-icons-round">picture_as_pdf</i> PDF
-                        </button>
-                        <button type="button" class="btn-secondary-ims" onclick="window.downloadCurrentInvoice('image')">
-                            <i class="material-icons-round">image</i> Image
-                        </button>
-                    </div>
-                    <div class="footer-right">
-                        <button type="button" class="btn-secondary" onclick="window.cancelInvoiceEditor()">
-                            <i class="material-icons-round">close</i> Cancel
-                        </button>
-                        <button type="button" id="saveInvoiceBtn" class="btn-primary-ims">
-                            <i class="material-icons-round">save</i> ${isEdit ? 'Update Invoice' : 'Create Invoice'}
-                        </button>
-                    </div>
+            <!-- Fixed Footer Actions -->
+            <div class="invoice-editor-footer-ims fixed-footer">
+                <div class="footer-left">
+                     <button type="button" class="btn-secondary-ims btn-preview" onclick="window.previewCurrentInvoice()">
+                        <i class="material-icons-round">visibility</i> Preview
+                    </button>
+                    <button type="button" class="btn-secondary-ims btn-pdf" onclick="window.downloadCurrentInvoice('pdf')">
+                        <i class="material-icons-round">picture_as_pdf</i> PDF
+                    </button>
+                    <button type="button" class="btn-secondary-ims btn-image" onclick="window.downloadCurrentInvoice('image')">
+                        <i class="material-icons-round">image</i> Image
+                    </button>
                 </div>
-            </form>
+                <div class="footer-right">
+                    <button type="button" class="btn-secondary-ims" onclick="window.cancelInvoiceEditor()">
+                        Cancel
+                    </button>
+                    <button type="button" id="saveInvoiceBtn" class="btn-primary-ims large">
+                        <i class="material-icons-round">save</i> ${isEdit ? 'Save Changes' : 'Create Invoice'}
+                    </button>
+                </div>
+            </div>
         </div>
     `;
 
@@ -984,10 +1017,10 @@ function addItemRow() {
     newRow.className = 'item-row';
     newRow.dataset.index = rowCount;
     newRow.innerHTML = `
-        <td><input type="text" class="item-desc" value="" placeholder="Item description"></td>
+        <td><input type="text" class="item-desc modern-input" value="" placeholder="Item description"></td>
         <td>
-            <select class="item-boq">
-                <option value="">-</option>
+            <select class="item-boq modern-select">
+                <option value="">Select category</option>
                 <option value="civil">Civil</option>
                 <option value="electrical">Electrical</option>
                 <option value="plumbing">Plumbing</option>
@@ -999,11 +1032,11 @@ function addItemRow() {
                 <option value="misc">Miscellaneous</option>
             </select>
         </td>
-        <td><input type="text" class="item-phase" value="" placeholder="e.g. Phase 1"></td>
-        <td><input type="text" class="item-location" value="" placeholder="e.g. Floor 2"></td>
-        <td><input type="number" class="item-qty" value="1" min="1" step="0.01"></td>
+        <td><input type="text" class="item-phase modern-input" value="" placeholder="Phase 1"></td>
+        <td><input type="text" class="item-location modern-input" value="" placeholder="Floor 2"></td>
+        <td><input type="number" class="item-qty modern-input" value="1" min="1" step="0.01"></td>
         <td>
-            <select class="item-unit">
+            <select class="item-unit modern-select">
                 <option value="pcs">pcs</option>
                 <option value="sqft">sqft</option>
                 <option value="rft">rft</option>
@@ -1014,9 +1047,9 @@ function addItemRow() {
                 <option value="m">m</option>
             </select>
         </td>
-        <td><input type="number" class="item-price" value="0" min="0" step="0.01"></td>
+        <td><input type="number" class="item-price modern-input" value="0" min="0" step="0.01"></td>
         <td class="item-total">${formatCurrency(0)}</td>
-        <td><button type="button" class="btn-icon-ims danger remove-item-btn"><i class="material-icons-round">close</i></button></td>
+        <td><button type="button" class="btn-icon-ims danger remove-item-btn"><i class="material-icons-round">remove_circle_outline</i></button></td>
     `;
 
     tbody.appendChild(newRow);

@@ -1,0 +1,25 @@
+// Branding Variables
+// Source: theme_config.json
+
+// Typography
+$font-family-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+// Colors
+$brand-primary: #4f46e5;
+$brand-primary-hover: #4338ca;
+$brand-secondary: #64748b;
+$brand-success: #16a34a;
+$brand-warning: #ca8a04;
+$brand-danger: #dc2626;
+$brand-info: #2563eb;
+
+// UI
+$brand-bg: #f8fafc;
+$brand-surface: #ffffff;
+$brand-border: #e2e8f0;
+
+// Components
+$radius-base: 12px;
+$radius-lg: 16px;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
