@@ -1,0 +1,53 @@
+﻿node.exe : [11ty] Problem writing Eleventy 
+templates: (more in DEBUG output)
+At 
+C:\Users\User\AppData\Roaming\npm\npx.ps1:24 
+char:5
++     & "node$exe"  
+"$basedir/node_modules/npm/bin/npx-cli.js" 
+$args
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified   
+ : ([11ty] Problem ...n DEBUG output):S    
+tring) [], RemoteException
+    + FullyQualifiedErrorId : NativeComman   
+ dError
+ 
+[11ty] Output conflict: multiple input files 
+are writing to `_site/assets/js/config.js`. 
+Use distinct `permalink` values to resolve 
+this conflict.
+[11ty]   1. ./src/assets/js/config.js.njk
+[11ty]   2. ./src/config.js.njk (via 
+DuplicatePermalinkOutputError)
+[11ty] 
+[11ty] Original error stack trace: (Repeated 
+output has been truncatedÔÇª)
+[11ty]     at 
+TemplateMap.checkForDuplicatePermalinks (E:\N
+obho\nobho-interior-design-website\node_modul
+es\@11ty\eleventy\src\TemplateMap.js:803:13)
+[11ty]     at TemplateMap.cache (E:\Nobho\nob
+ho-interior-design-website\node_modules\@11ty
+\eleventy\src\TemplateMap.js:488:10)
+[11ty]     at 
+process.processTicksAndRejections 
+(node:internal/process/task_queues:105:5)
+[11ty]     at async 
+TemplateWriter._createTemplateMap (E:\Nobho\n
+obho-interior-design-website\node_modules\@11
+ty\eleventy\src\TemplateWriter.js:330:5)
+[11ty]     at async 
+TemplateWriter.generateTemplates (E:\Nobho\no
+bho-interior-design-website\node_modules\@11t
+y\eleventy\src\TemplateWriter.js:360:5)
+[11ty]     at async TemplateWriter.write (E:\
+Nobho\nobho-interior-design-website\node_modu
+les\@11ty\eleventy\src\TemplateWriter.js:407:
+23)
+[11ty]     at async Eleventy.executeBuild (E:
+\Nobho\nobho-interior-design-website\node_mod
+ules\@11ty\eleventy\src\Eleventy.js:1191:13)
+[11ty] Copied 37 files / Wrote 0 files in 0.15 seconds (v2.0.1)
+
