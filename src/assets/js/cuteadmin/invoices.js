@@ -250,8 +250,8 @@ export async function updateInvoice(invoiceId, updates, silent = false) {
     const role = window.CuteState?.role;
     console.log(`[Invoice Update] Attempting to update invoice ${invoiceId}`, updates);
 
-    if (role !== 'admin') {
-        if (!silent) showToast("Permission denied: Only Admins can edit invoices", "error");
+    if (role !== 'admin' && role !== 'moderator') {
+        if (!silent) showToast("Permission denied: Only Admins/Moderators can edit invoices", "error");
         console.warn(`[Invoice Update] Permission denied for role: ${role}`);
         return false;
     }
@@ -313,8 +313,8 @@ export async function updateInvoice(invoiceId, updates, silent = false) {
  */
 export async function issueInvoice(invoiceId) {
     const role = window.CuteState?.role;
-    if (role !== 'admin') {
-        showToast("Permission denied: Only Admins can issue invoices", "error");
+    if (role !== 'admin' && role !== 'moderator') {
+        showToast("Permission denied: Only Admins/Moderators can issue invoices", "error");
         return false;
     }
 
@@ -347,8 +347,8 @@ export async function issueInvoice(invoiceId) {
  */
 export async function addPayment(invoiceId, payment) {
     const role = window.CuteState?.role;
-    if (role !== 'admin') {
-        showToast("Permission denied: Only Admins can record payments", "error");
+    if (role !== 'admin' && role !== 'moderator') {
+        showToast("Permission denied: Only Admins/Moderators can record payments", "error");
         return false;
     }
 
@@ -407,8 +407,8 @@ export async function addPayment(invoiceId, payment) {
 export async function deleteInvoice(invoiceId) {
     try {
         const role = window.CuteState?.role;
-        if (role !== 'admin') {
-            showToast("Permission denied: Only Admins can delete invoices", "error");
+        if (role !== 'admin' && role !== 'moderator') {
+            showToast("Permission denied: Only Admins/Moderators can delete invoices", "error");
             return false;
         }
 
@@ -449,7 +449,7 @@ export async function deleteInvoice(invoiceId) {
  */
 export async function cancelInvoice(invoiceId) {
     const role = window.CuteState?.role;
-    if (role !== 'admin') {
+    if (role !== 'admin' && role !== 'moderator') {
         showToast("Permission denied", "error");
         return false;
     }
@@ -461,8 +461,8 @@ export async function cancelInvoice(invoiceId) {
  */
 export async function setInvoiceLock(invoiceId, lock) {
     const role = window.CuteState?.role;
-    if (role !== 'admin') {
-        showToast("Permission denied: Admin only", "error");
+    if (role !== 'admin' && role !== 'moderator') {
+        showToast("Permission denied: Admin/Moderator only", "error");
         return false;
     }
 

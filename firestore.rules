@@ -103,7 +103,7 @@ service cloud.firestore {
     match /invoices/{invoiceId} {
       allow read: if isModerator();
       allow create: if isModerator();
-      allow update, delete: if isAdmin(); // Strict: Only Admins can edit/delete
+      allow update, delete: if isModerator(); // Admins & Moderators can edit/delete
     }
     
     // --- 9. Invoice Logs Collection (IMS) ---
@@ -126,7 +126,7 @@ service cloud.firestore {
     
     // --- 12. Deleted Invoices Collection (Admin Only Archive) ---
     match /deleted_invoices/{invoiceId} {
-      allow read, write: if isAdmin(); // Only admins can access deleted invoice archive
+      allow read, write: if isModerator(); // Admins/Moderators can access deleted invoice archive
     }
 
     // --- 13. Exported Invoices Log ---

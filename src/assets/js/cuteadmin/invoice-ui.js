@@ -345,7 +345,7 @@ async function loadInvoicesTable(status = 'all', searchTerm = '', filters = {}) 
  */
 function getActionsColumnHtml(inv) {
     const role = window.CuteState?.role;
-    const isAdmin = role === 'admin';
+    const isAdmin = role === 'admin' || role === 'moderator';
 
     let html = `
         <div class="action-buttons">
